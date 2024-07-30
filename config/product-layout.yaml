@@ -28,43 +28,281 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: REPLACEME
-  productionDescription: REPLACEME
-  whoIsItFor: REPLACEME
-  image: 
-    link: "/assets/images/Fiserv_Logo.jpg"
-    altText: REPLACEME™
+  productName: APIM Consumer onboarding and Monetization center
+  productionDescription: APIM Consumer onboarding and Monetization center offers Fiserv developers access to seamlessly integrate with self-service APIs that perform consumer onboarding onto APIM and Ping IDPs, Product, Subscription and Reports management
+  whoIsItFor: Internal
+  getStarted: /docs/get-started.md
+  steps:  
+   learnSteps:
+    - title: Learn
+      description: >
+        Use the Fiserv Developer Studio to discover your next integration project. Developers can explore the APIs in our intelligent API Explorer.
+      link:
+   buildSteps:
+    - title: Build
+      description: >
+        Leverage our sample code to get your application coded quickly. Developers can employ our Sandbox environment to create robust solutions.
+      link:
+   validateSteps:
+    - title: Validate
+      description: >
+        Test your application end-to-end in our latest Sandbox environment. Use our state-of-the-art features to make your application more robust.
+      link:
+   deploySteps:
+    - title: deploy
+      description: >
+        When your application is ready for deployment, submit it for our automated certification. Once certified, it can be deployed to the production.
+      link:
+
 featuredFeatures:
-  - title: REPLACE ME
-    description:  REPLACE ME
-    tags: ["REPLACEME", "REPLACEME", "REPLACEME"]
+  - title: Consumer Management
+    description:  Provides support to onboard consumer and company, update their information, generate credentials, and revoke them if needed.
+    tags: ["APIM Consumer onboarding and Monetization center"]
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME1.md
+        title: Before You Start
+        description: Know the steps to create an account on Fiserv Developer Studio and understand the structure of APIM APIs.
+        link: "docs/getting-started/before-you-start.md"
       - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME2.md
+        title: Make Your First API Call 
+        description: Understand the process of testing an API using built-in API Explorer of Fiserv and third-party API testing tools.
+        link: "docs/getting-started/make-your-first-api-call.md"
       - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME3.md
+        title: Response Codes
+        description: Know the standard HTTP and client-specific status and error codes returned for every API request that is sent to the APIM server.
+        link: "docs/response-codes.md"
     relatedAPIs:
       - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
-        type: "patch"        
-        path: "/v1/REPLACEME1"
-      - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
+        title: Creates a Consumer
+        description: Creates a profile for a consumer in an organization.
         type: "post"        
-        path: "/v1/REPLACEME2"
+        path: "/consumers"
       - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
+        title: list of consumer 
+        description: Get list of consumer profile
         type: "get"        
-        path: "/v1/REPLACEME3"
+        path: "/consumers"
+      - relatedAPI: 
+        title: Get consumer
+        description: Get consumer profile from APIGEE
+        type: "get"        
+        path: "/consumers/{consumer-email}"
+      - relatedAPI: 
+        title: Update consumer
+        description: Update consumer profile
+        type: "put"        
+        path: "/consumers/{consumer-email}"
+      - relatedAPI: 
+        title: set consumer status 
+        description: Sets a consumer's status to `active` or `inactive` for a specific organization.
+        type: "post"        
+        path: "/consumers/{consumer-email}"
+      - relatedAPI: 
+        title: Lists all apps
+        description: Lists all apps created by a consumer in an organization
+        type: "get"        
+        path: "/consumers/{consumer-email}/apps"
+      - relatedAPI: 
+        title: Creates an app
+        description: Creates an app associated with a Consumer, associates the app with an API product, Creates a service account
+        type: "post"        
+        path: "/consumers/{consumer-email}/apps"
+      - relatedAPI: 
+        title: Update an app 
+        description: Update an app.
+        type: "put"        
+        path: "/consumers/{identifier}/apps/{app_name}"
+      - relatedAPI: 
+        title: Get Consumer app 
+        description: Gets the profile of a specific Consumer app in an organization.
+        type: "get"
+        path: "/consumers/{identifier}/apps/{app_name}"
+      - relatedAPI: 
+        title: Approve, revoke, or generate API key for consumer app
+        description: Approves, revokes, or generates an API key for a consumer app. 
+        type: "post"        
+        path: "/consumers/{consumer-email}/apps/{app}"
+  - title: Product Management
+    description:  Empowers BU implementation team to precisely define access controls, quota limits and features for every API product. Subsequently, these configurations can be seamlessly published for external developer consumption, ensuring streamlined and efficient API product management.
+    tags: ["APIM Consumer onboarding and Monetization center"]
+    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: Before You Start
+        description: Know the steps to create an account on Fiserv Developer Studio and understand the structure of APIM APIs.
+        link: "docs/getting-started/before-you-start.md"
+      - relatedDoc: 
+        title: Make Your First API Call 
+        description: Understand the process of testing an API using built-in API Explorer of Fiserv and third-party API testing tools.
+        link: "docs/getting-started/make-your-first-api-call.md"
+      - relatedDoc: 
+        title: Response Codes
+        description: Know the standard HTTP and client-specific status and error codes returned for every API request that is sent to the APIM server.
+        link: "docs/response-codes.md"
+    relatedAPIs:
+      - relatedAPI: 
+        title: Create product
+        description: Creates an API Products in an organization.
+        type: "post"        
+        path: "/apiproducts"
+      - relatedAPI: 
+        title: list of products 
+        description: Get list of all API products
+        type: "get"        
+        path: "/apiproducts"
+      - relatedAPI: 
+        title: Get product
+        description: Gets configuration details for an API product.
+        type: "get"        
+        path: "/apiproducts/{apiproduct-id}"
+      - relatedAPI: 
+        title: Update product
+        description: Updates an existing API product.
+        type: "put"        
+        path: "/apiproducts/{apiproduct-id}"  
+  - title: Rateplan Management
+    description:  Helps to create and manage Rate plans associated with API product that is monetized. It is also used to view, and list rateplan configuration.
+    tags: ["APIM Consumer onboarding and Monetization center"]
+    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: Before You Start
+        description: Know the steps to create an account on Fiserv Developer Studio and understand the structure of APIM APIs.
+        link: "docs/getting-started/before-you-start.md"
+      - relatedDoc: 
+        title: Make Your First API Call 
+        description: Understand the process of testing an API using built-in API Explorer of Fiserv and third-party API testing tools.
+        link: "docs/getting-started/make-your-first-api-call.md"
+      - relatedDoc: 
+        title: Response Codes
+        description: Know the standard HTTP and client-specific status and error codes returned for every API request that is sent to the APIM server.
+        link: "docs/response-codes.md"
+    relatedAPIs:
+      - relatedAPI: 
+        title: Create a Rateplan
+        description: Create a rate plan that is associated with an API product in an organization.
+        type: "post"        
+        path: "/apiproducts/{apiproduct-id}/rateplans"
+      - relatedAPI: 
+        title: list of Rateplan 
+        description: Get List of all the rate plans for an API product.
+        type: "get"        
+        path: "/apiproducts/{apiproduct-id}/rateplans"
+      - relatedAPI: 
+        title: Get Rateplan
+        description: Gets the details of a rate plan.
+        type: "get"        
+        path: "/apiproducts/{apiproduct-id}/rateplans/{rateplan-id}"
+      - relatedAPI: 
+        title: Update rate plan
+        description: Updates an existing rate plan.
+        type: "put"        
+        path: "/apiproducts/{apiproduct-id}/rateplans/{rateplan-id}"     
+ - title: Subscription Management
+    description:  Provides support for operations that manage the subscription such as create, expire, retrieve, and list developer and company API Product subscriptions.
+    tags: ["APIM Consumer onboarding and Monetization center"]
+    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: Before You Start
+        description: Know the steps to create an account on Fiserv Developer Studio and understand the structure of APIM APIs.
+        link: "docs/getting-started/before-you-start.md"
+      - relatedDoc: 
+        title: Make Your First API Call 
+        description: Understand the process of testing an API using built-in API Explorer of Fiserv and third-party API testing tools.
+        link: "docs/getting-started/make-your-first-api-call.md"
+      - relatedDoc: 
+        title: Response Codes
+        description: Know the standard HTTP and client-specific status and error codes returned for every API request that is sent to the APIM server.
+        link: "docs/response-codes.md"
+    relatedAPIs:
+      - relatedAPI: 
+        title: Creates a subscription
+        description: Creates a subscription to an API product.
+        type: "post"        
+        path: "/consumers/{consumer-email}/subscriptions"
+      - relatedAPI: 
+        title: list of subscriptions
+        description: Lists all API product subscriptions for a consumer
+        type: "get"        
+        path: "/consumers/{consumer-email}/subscriptions"
+      - relatedAPI: 
+        title: Get subscriptions
+        description: Gets details for an API product subscription.
+        type: "get"        
+        path: "/consumers/{consumer-email}/subscriptions/{subscription-id}"
+      - relatedAPI: 
+        title: Expire subscription
+        description: Expires an API product subscription immediately.
+        type: "post"        
+        path: "/consumers/{consumer-email}/subscriptions/{subscription-id}:expire" 
+  - title: Reports Management
+    description:  Retrieve consumption data in near real-time related to monetized API calls by creating synchronous and Asynchronous reports.
+    tags: ["APIM Consumer onboarding and Monetization center"]
+    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: Before You Start
+        description: Know the steps to create an account on Fiserv Developer Studio and understand the structure of APIM APIs.
+        link: "docs/getting-started/before-you-start.md"
+      - relatedDoc: 
+        title: Make Your First API Call 
+        description: Understand the process of testing an API using built-in API Explorer of Fiserv and third-party API testing tools.
+        link: "docs/getting-started/make-your-first-api-call.md"
+      - relatedDoc: 
+        title: Response Codes
+        description: Know the standard HTTP and client-specific status and error codes returned for every API request that is sent to the APIM server.
+        link: "docs/response-codes.md"
+    relatedAPIs:
+      - relatedAPI: 
+        title: Create a new Query
+        description: Submit a query to be processed in the background.
+        type: "post"        
+        path: "/queries"
+      - relatedAPI: 
+        title: List of Queries
+        description: Return a list of Asynchronous Queries
+        type: "get"        
+        path: "/queries"
+      - relatedAPI: 
+        title: Get Querie
+        description: Gets Querie details.
+        type: "get"        
+        path: "/queries/{queryID}"
+      - relatedAPI: 
+        title: Get a Query Result
+        description: After the query is completed, use this API to retrieve the results
+        type: "get"        
+        path: "/queries/{queryID}/result" 
+      - relatedAPI: 
+        title: Get a Query Result URL
+        description: Returns a Query Result URL
+        type: "get"        
+        path: " /queries/{queryID}/resulturl"
+      - relatedAPI: 
+        title: Create Custom Report
+        description: Creates a Custom Report for an Organization. A Custom Report provides Apigee Customers to create custom dashboards in addition to the standard dashboards which are provided.
+        type: "post"        
+        path: "/reports"
+      - relatedAPI: 
+        title: List Custom Reports
+        description: Return a list of Custom Reports.
+        type: "get"        
+        path: "/reports"
+      - relatedAPI: 
+        title: Get Custom Report
+        description: Retrieve a custom report.
+        type: "get"        
+        path: "/reports/{reportid}"  
+      - relatedAPI: 
+        title: Update Custom Report
+        description: Update an existing custom report.
+        type: "put"        
+        path: "/reports/{reportid}"
+      - relatedAPI: 
+        title: Get Schema
+        description: Gets a list of metrics and dimensions that can be used to create analytics queries and reports
+        type: "get"        
+        path: "/analytics/admin/schemav2"  
+  
