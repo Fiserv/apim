@@ -199,7 +199,7 @@ featuredFeatures:
         description: Updates an existing rate plan.
         type: "put"        
         path: "/apiproducts/{apiproduct-id}/rateplans/{rateplan-id}"     
- - title: Subscription Management
+  - title: Subscription Management
     description:  Provides support for operations that manage the subscription such as create, expire, retrieve, and list developer and company API Product subscriptions.
     tags: ["APIM Consumer onboarding and Monetization center"]
     bullets: ["REPLACEME", "REPLACEME" ]  
