@@ -28,8 +28,8 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: APIM Consumer onboarding and Monetization center
-  productionDescription: APIM Consumer onboarding and Monetization center offers Fiserv developers access to seamlessly integrate with self-service APIs that perform consumer onboarding onto APIM and Ping IDPs, Product, Subscription and Reports management
+  productName: FTS APIM Self service APIs
+  productionDescription: FTS APIM Self service APIs offers Fiserv developers access to seamlessly integrate with self-service APIs that perform consumer onboarding onto APIM and Ping IDPs, Product, Subscription and Reports management
   whoIsItFor: Internal
   getStarted: /docs/get-started.md
   steps:  
