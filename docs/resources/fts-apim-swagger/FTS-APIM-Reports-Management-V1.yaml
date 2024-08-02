@@ -1,0 +1,1489 @@
+openapi: 3.0.3
+info:
+  title: FTS-APIM-Reports-Management-V1
+  description: |-
+    This document provides information regarding the reporting and query services.
+  contact:
+    name: FTS APIM Support
+    email: DL-NA-APIM@fiserv.com  
+  version: 0.0.1
+servers:
+  - url: https://connect-dev.fiservapis.com/fts/apim/reports-management/v1
+    description: Dev server
+  - url: https://connect-test.fiservapis.com/fts/apim/reports-management/v1
+    description: Test server
+  - url: https://connect-qa.fiservapis.com/fts/apim/reports-management/v1
+    description: QA server for test purposes
+  - url: https://connect-uat.fiservapis.com/fts/apim/reports-management/v1
+    description: UAT server for test purposes
+  - url: https://connect-cert.fiservapis.com/fts/apim/reports-management/v1
+    description: Client certification server
+  - url: https://connect.fiservapis.com/fts/apim/reports-management/v1
+    description: Production server
+tags:
+  
+  - name: Queries
+    description: API endpoints related to Queries
+  - name: Reports
+    description: API endpoints related to Reports
+  - name: Schemas
+    description: Report metric schema information
+paths:
+  /queries:      
+    post:
+      tags:
+        - Queries
+      summary:  Create a new Query
+      description: >-
+        Submit a query to be processed in the background. If the submission of
+        the query succeeds, the API returns a 201 status and an ID that refer to
+        the query. In addition to the HTTP status 201, the `state` of "enqueued"
+        means that the request succeeded.
+      operationId: createQuery
+      requestBody:
+        description: The request body contains an instance
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            example: 
+              metrics:
+                - name: message_count
+                  function: sum
+              dimensions:
+                - api_product
+                - developer_app
+                - developer_email
+                - apiproxy
+                - fees_type
+                - dc_x_apigee_mintng_rate_plan_id
+                - x_apigee_mintng_tx_success
+                - environment
+                - organization
+                - request_verb
+              timeRange:
+                start: '2024-07-01T11:46:00.000Z'
+                end: '2024-07-02T11:46:00.000Z'
+              filter: api_product eq 'FTS-APIM-WRAPPER'
+              outputFormat: csv
+              csvDelimiter: ','
+              name: test-query
+        required: true
+      
+      responses:
+        '201':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+              example:   
+                self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/47906072-d6c4-414a-9e1b-182d51994c71
+                state: enqueued
+                created: '2024-07-02T21:32:30Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'   
+    get:
+      tags:
+        - Queries
+      description: Return a list of Asynchronous Queries
+      summary: Return a list of Queries
+      operationId: ListAsyncQueries
+      parameters:
+        
+        - name: submittedBy
+          in: query
+          schema:
+            $ref: '#/components/parameters/submittedBy'
+        - name: status
+          in: query
+          schema:
+             $ref: '#/components/parameters/status'
+        - name: from
+          in: query
+          schema:
+            $ref: '#/components/parameters/from'
+        - name: to
+          in: query
+          schema:
+            $ref: '#/components/parameters/to'
+        - name: dataset
+          in: query
+          schema:
+            $ref: '#/components/parameters/dataset'
+        - name: inclQueriesWithoutReport
+          in: query
+          schema:
+            $ref: '#/components/parameters/inclQueriesWithoutReport'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ListAsyncQueriesResponse
+              example: 
+               queries:
+                 - self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/ac36f6b9-c6ba-4131-b3aa-115f836ee319
+                   state: completed
+                   created: '2024-07-01T19:34:04-07:00'
+                   updated: '2024-07-01T19:34:16-07:00'
+                   result:
+                     self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/ac36f6b9-c6ba-4131-b3aa-115f836ee319/result
+                     expires: '2024-07-08T19:34:16-07:00'
+                   resultRows: '0'
+                   resultFileSize: 0.11 KB
+                   executionTime: 11 seconds
+                   queryParams:
+                     metrics:
+                       - 'name:message_count,func:sum,alias:sum_message_count,op:,val:'
+                     dimensions:
+                       - api_product
+                       - developer_app
+                       - developer_email
+                       - apiproxy
+                       - fees_type
+                       - dc_x_apigee_mintng_rate_plan_id
+                       - x_apigee_mintng_tx_success
+                       - environment
+                       - organization
+                       - request_verb
+                     startTimestamp: '2024-06-25T00:00:00Z'
+                     endTimestamp: '2024-07-02T00:00:00Z'
+                     outputFormat: csv
+                     csvDelimiter: ','
+                   name: b93aab36-7785-4f5c-8a93-d29cb946fe17
+                   reportDefinitionId: 7fbee44f-d1ce-4b36-bf7b-351f2ec381b8
+                 - self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/509e09fa-21f5-4fa0-81d5-227508e57c48
+                   state: completed
+                   created: '2024-07-01T19:33:35-07:00'
+                   updated: '2024-07-01T19:33:47-07:00'
+                   result:
+                     self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/509e09fa-21f5-4fa0-81d5-227508e57c48/result
+                     expires: '2024-07-08T19:33:47-07:00'
+                   resultRows: '0'
+                   resultFileSize: 0.11 KB
+                   executionTime: 11 seconds
+                   queryParams:
+                     metrics:
+                       - 'name:message_count,func:sum,alias:sum_message_count,op:,val:'
+                     dimensions:
+                       - api_product
+                       - developer_app
+                       - developer_email
+                       - apiproxy
+                       - fees_type
+                       - dc_x_apigee_mintng_rate_plan_id
+                       - x_apigee_mintng_tx_success
+                       - environment
+                       - organization
+                       - request_verb
+                     startTimestamp: '2024-06-25T00:00:00Z'
+                     endTimestamp: '2024-07-02T00:00:00Z'
+                     outputFormat: csv
+                     csvDelimiter: ','
+                   name: test-query
+                   reportDefinitionId: 7fbee44f-d1ce-4b36-bf7b-351f2ec381b8
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'              
+               
+  /queries/{queryID}:      
+    get:
+      tags:
+        - Queries
+      summary: Get a Query
+      description: Returns a Query 
+      operationId: getAQuery
+      parameters:
+        - name: queryID
+          in: path
+          description: Provide the Query ID
+          required: true
+          schema:
+            $ref: '#/components/parameters/queryID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncQueryResponse' 
+              example:
+                self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/3e372cde-6403-4153-86e5-b37fde1fe06c
+                state: completed
+                created: '2024-06-13T13:33:06-07:00'
+                updated: '2024-06-13T13:33:18-07:00'
+                result:
+                  self: /organizations/prj-fisv-n-apigeee4aa22a1/environments/dev1/queries/3e372cde-6403-4153-86e5-b37fde1fe06c/result
+                  expires: '2024-06-20T13:33:18-07:00'
+                resultRows: '3'
+                resultFileSize: 0.25 KB
+                executionTime: 11 seconds
+                queryParams:
+                  metrics:
+                    - 'name:message_count,func:sum,alias:sum_message_count,op:,val:'
+                  dimensions:
+                    - api_product
+                    - developer_app
+                    - developer_email
+                    - apiproxy
+                    - fees_type
+                    - dc_x_apigee_mintng_rate_plan_id
+                    - dc_x_apigee_mintng_rate_plan_id
+                    - x_apigee_mintng_tx_success
+                    - environment
+                    - organization
+                    - request_verb
+                  startTimestamp: '2023-05-30T09:45:00Z'
+                  endTimestamp: '2023-05-30T10:45:00Z'
+                  outputFormat: csv
+                reportDefinitionId: 7fbee44f-d1ce-4b36-bf7b-351f2ec381b8
+                name: e6f46422-a753-456a-886c-dd6c2f0620b0
+                
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+         
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'           
+  /queries/{queryID}/result:  
+    get:
+      tags:
+        - Queries
+      summary: Get a Query Result
+      description: After the query is completed, use this API to retrieve the results
+      operationId: getAQueryResult
+      parameters:
+        - name: queryID
+          in: path
+          description: Provide the Query ID
+          required: true
+          schema:
+            $ref: '#/components/parameters/queryID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+              
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'
+  /queries/{queryID}/resulturl:
+    get:
+      tags:
+        - Queries
+      summary: Get a Query Result URL
+      description: Returns a Query Result URL
+      operationId: getAQueryResultURL
+      parameters:
+        - name: queryID
+          in: path
+          description: Provide the Query ID
+          required: true
+          schema:
+            $ref: '#/components/parameters/queryID'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncQueryResultUrlResponse' 
+              example:
+                 urls:
+                   - uri: https://storage.googleapis.com/uap-query-cee0bd50-cd50-11ec-b88d-001a113df584/uap/queryresults/prj-fisv-n-apigeee4aa22a1~dev1/e3e4f64a-8999-4156-8edb-33c99c19749f/QueryResults-e3e4f64a-8999-4156-8edb-33c99c19749f-000000000000.csv.gz?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=service-200693193143%40gcp-sa-apigee.iam.gserviceaccount.com%2F20240616%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20240616T212424Z&X-Goog-Expires=3599&X-Goog-Signature=183cfa20e1fd9424e8977625e6d25c4132fe421d586a4fb735d42b6c6073a5a1337a57d9e160fb9a32ab83fb39b8e8f9e6380ba2f5edf5a9dae902021753882735597221c701df06e484c14bbada5d82b2895077d7955421480b6536cb7c9f1b7bb38d0a3820ddc68efd512e5b41ef8d5924b28866dc70f1885250111fd6f2412120e20f9112eed23d773c125867d2e3af4df2b667facc998050908d9e64fe7e954fbcb2e960044d6726a62324dd59eb032e7b19bcc6d4b2f520314432a58e7d9e3520da69a12948e8c399b30fb96243ba1beefb7f9119927a36b0d448fdd4b13f075905eaaab0d95d0ca15449c6f145e04ea441bd42eaa4a7e31b9a914e0986&X-Goog-SignedHeaders=host
+                     md5: 3f0e1f446c84b249321b192201e9e8d3
+                     sizeBytes: '250'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+         
+         
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'   
+  /reports:
+    get:
+      tags:
+        - Reports
+      summary: ListCustomReports  
+      description: Return a list of Custom Reports
+      operationId: ListCustomReports
+      responses:
+        '200':
+          description: ListCustomReports
+          content:
+            application/json:
+              
+              schema:
+                $ref: >-
+                  #/components/schemas/ListCustomReportsResponse
+              example:
+                  qualifier:
+                    - name: 93e89fea-f1c0-4851-8577-2716e46dc0c3
+                      displayName: test-report-1
+                      metrics:
+                        - name: message_count
+                          function: sum
+                      dimensions:
+                        - api_product
+                        - developer_app
+                        - developer_email
+                        - apiproxy
+                        - fees_type
+                        - x_apigee_mintng_tx_success
+                        - developer
+                        - x_apigee_mintng_currency
+                        - x_apigee_mintng_rate_plan_id
+                        - environment
+                        - organization
+                        - request_verb
+                      filter: api_product eq 'FTS-APIM-WRAPPER'
+                      createdAt: '1719976720478'
+                      lastModifiedAt: '1719976720478'
+                      chartType: column
+                      organization: prj-fisv-n-apigeee4aa22a1
+                    - name: ffd7b4b6-df12-428e-bc63-13ac87bca9a0
+                      displayName: test-report-2
+                      metrics:
+                        - name: message_count
+                          function: sum
+                      dimensions:
+                        - api_product
+                        - developer_app
+                        - developer_email
+                        - apiproxy
+                        - fees_type
+                        - x_apigee_mintng_tx_success
+                        - developer
+                        - x_apigee_mintng_currency
+                        - x_apigee_mintng_rate_plan_id
+                        - environment
+                        - organization
+                        - request_verb
+                      filter: api_product eq 'FTS-APIM-WRAPPER'
+                      createdAt: '1719976720478'
+                      lastModifiedAt: '1719976720478'
+                      chartType: column
+                      organization: prj-fisv-n-apigeee4aa22a1
+                     
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+         
+         
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'            
+       
+    post:
+      tags:
+        - Reports
+      summary: CreateCustomReport  
+      description: >-
+        Creates a Custom Report for an Organization. A Custom Report provides
+        Apigee Customers to create custom dashboards in addition to the standard
+        dashboards which are provided. The Custom Report in its simplest form
+        contains specifications about metrics, dimensions and filters. It is
+        important to note that the custom report by itself does not provide an
+        executable entity. The Edge UI converts the custom report definition
+        into an analytics query and displays the result in a chart.
+      operationId: CreateCustomReport
+      
+      requestBody:
+        description: Required. The body to create a new custom report.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomReportRequest'
+            example:
+                 name: test-report-1
+                 displayName: test-report-1
+                 metrics:
+                   - name: message_count
+                     function: sum
+                 dimensions:
+                   - api_product
+                   - developer_app
+                   - developer_email
+                   - apiproxy
+                   - fees_type
+                   - x_apigee_mintng_tx_success
+                   - developer
+                   - x_apigee_mintng_currency
+                   - x_apigee_mintng_rate_plan_id
+                   - environment
+                   - organization
+                   - request_verb
+                 filter: api_product eq 'FTS-APIM-WRAPPER'
+                 chartType: column  
+        
+      responses:
+        '201':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomReportResponse'
+              example:
+                name: 93e89fea-f1c0-4851-8577-2716e46dc0c3
+                displayName: test-report-1
+                metrics:
+                  - name: message_count
+                    function: sum
+                dimensions:
+                  - api_product
+                  - developer_app
+                  - developer_email
+                  - apiproxy
+                  - fees_type
+                  - x_apigee_mintng_tx_success
+                  - developer
+                  - x_apigee_mintng_currency
+                  - x_apigee_mintng_rate_plan_id
+                  - environment
+                  - organization
+                  - request_verb
+                filter: api_product eq 'FTS-APIM-WRAPPER'
+                createdAt: '1719976720478'
+                lastModifiedAt: '1719976720478'
+                chartType: column
+                organization: prj-fisv-n-apigeee4aa22a1
+                
+                     
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+         
+         
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'           
+  /reports/{reportid}:
+    get:
+      tags:
+        - Reports
+      summary: GetCustomReport   
+      description: Retrieve a custom report.
+      operationId: GetCustomReport
+      parameters:
+        - name: reportid
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomReportResponse'
+              example:
+                name: 93e89fea-f1c0-4851-8577-2716e46dc0c3
+                displayName: test-report-1
+                metrics:
+                  - name: message_count
+                    function: sum
+                dimensions:
+                  - api_product
+                  - developer_app
+                  - developer_email
+                  - apiproxy
+                  - fees_type
+                  - x_apigee_mintng_tx_success
+                  - developer
+                  - x_apigee_mintng_currency
+                  - x_apigee_mintng_rate_plan_id
+                  - environment
+                  - organization
+                  - request_verb
+                filter: api_product eq 'FTS-APIM-WRAPPER'
+                createdAt: '1719976720478'
+                lastModifiedAt: '1719976720478'
+                chartType: column
+                organization: prj-fisv-n-apigeee4aa22a1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'          
+    put:
+      tags:
+        - Reports
+      summary: UpdateCustomReport  
+      description: Update an existing custom report definition
+      operationId: UpdateCustomReport
+      parameters:
+        - name: reportid
+          in: path
+          description: custom report name 
+          required: true
+          schema:
+            $ref: '#/components/parameters/reportId'
+      requestBody:
+        description: Required. The body to create a new custom report.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomReportRequest'
+            example:
+                 name: test-report-1
+                 displayName: test-report-1
+                 metrics:
+                   - name: message_count
+                     function: sum
+                 dimensions:
+                   - api_product
+                   - developer_app
+                   - developer_email
+                   - apiproxy
+                   - fees_type
+                   - x_apigee_mintng_tx_success
+                   - developer
+                   - x_apigee_mintng_currency
+                   - x_apigee_mintng_rate_plan_id
+                   - environment
+                   - organization
+                   - request_verb
+                 filter: api_product eq 'FTS-APIM-WRAPPER'
+                 chartType: column  
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomReportResponse'
+              example:
+                name: 93e89fea-f1c0-4851-8577-2716e46dc0c3
+                displayName: test-report-1
+                metrics:
+                  - name: message_count
+                    function: sum
+                dimensions:
+                  - api_product
+                  - developer_app
+                  - developer_email
+                  - apiproxy
+                  - fees_type
+                  - x_apigee_mintng_tx_success
+                  - developer
+                  - x_apigee_mintng_currency
+                  - x_apigee_mintng_rate_plan_id
+                  - environment
+                  - organization
+                  - request_verb
+                filter: api_product eq 'FTS-APIM-WRAPPER'
+                createdAt: '1719976720478'
+                lastModifiedAt: '1719976720478'
+                chartType: column
+                organization: prj-fisv-n-apigeee4aa22a1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'          
+  /analytics/admin/schemav2:
+    get:
+      tags:
+        - Schemas
+      description: >-
+        Gets a list of metrics and dimensions that can be used to create
+        analytics queries and reports. Each schema element contains the name of
+        the field, its associated type, and a flag indicating whether it is a
+        standard or custom field.
+      operationId: GetSchema
+      parameters:
+      
+        - name: type
+          in: query
+          schema:
+            $ref: '#/components/parameters/type'
+        - name: disableCache
+          in: query
+          schema:
+            $ref: '#/components/parameters/disableCache'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schema'
+              example:
+                 dimensions:
+                   - name: organization
+                     properties:
+                       createTime: '2016-02-22T13:44:37.535Z'
+                       custom: 'false'
+                       type: string
+                   - name: environment
+                     properties:
+                       createTime: '2016-02-22T13:44:37.540Z'
+                       custom: 'false'
+                       type: string
+                 metrics:
+                   - name: request_size
+                     properties:
+                       createTime: '2016-02-22T13:44:37.551Z'
+                       custom: 'false'
+                       type: long
+                   - name: response_status_code
+                     properties:
+                       createTime: '2016-02-22T13:44:37.553Z'
+                       custom: 'false'
+                       type: integer
+                 
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+           description: Permission denied on resource
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/409'               
+components:
+  parameters:
+    expand:   
+      name:   expand
+      in: query
+      description: Set to 'true' to get expanded details about each custom report.
+      schema:
+            type: boolean  
+    dataset:
+      name: dataset
+      in: query
+      description: 'Filter response list by dataset. Example: `api`, `mint`'
+      required: true
+      schema:
+        type: string
+    inclQueriesWithoutReport:
+      name: inclQueriesWithoutReport
+      in: query
+      description: >-
+            Flag to include asynchronous queries that don't have a report
+            denifition.
+      schema:
+        type: string
+    submittedBy:
+      name: queryID
+      in: query
+      description: Filter response list by user who submitted queries.
+      required: true
+      schema:
+        type: string
+    status:
+      name: status
+      in: query
+      description: Filter response list by asynchronous query status.
+      required: true
+      schema:
+        type: string
+    from:
+      name: from
+      in: query
+      description: >-
+            Filter response list by returning asynchronous queries that created
+            after this date time. Time must be in ISO date-time format like
+            '2011-12-03T10:15:30Z'.
+      required: true
+      schema:
+        type: string
+    to:
+      name:  to
+      in: query
+      description: >-
+            Filter response list by returning asynchronous queries that created
+            before this date time. Time must be in ISO date-time format like
+            '2011-12-03T10:16:30Z'.
+      required: true
+      schema:
+        type: string    
+    queryID:
+      name: queryID
+      in: path
+      description: The queryID
+      required: true
+      schema:
+        type: string
+    reportId:
+      name: reportId
+      in: path
+      description: custom report name
+      required: true
+      schema:
+        type: string
+   
+    organization:
+      name: organization
+      in: path
+      description: >-
+            Part of `parent`. Required. The parent resource name. Must be of the
+            form `organizations/{org}/environments/{env}`.
+      required: true
+      schema:
+        type: string
+    env:
+      name:  env
+      in: path
+      description: Part of `parent`. See documentation of `organizationsId`.
+      required: true
+      schema:
+        type: string    
+    type:
+      name: type
+      in: query
+      description: >-
+            Flag that specifies whether the schema is be read from the database
+            or cache. Set to `true` to read the schema from the database.
+            Defaults to cache.
+      required: true
+      schema:
+        type: string  
+    disableCache:
+      name: type
+      in: query
+      description: >-
+            Flag that specifies whether the schema is be read from the database
+            or cache. Set to `true` to read the schema from the database.
+            Defaults to cache.
+      required: true
+      schema:
+        type: boolean        
+  schemas:
+    ListAsyncQueriesResponse:
+      type: object
+      properties:
+        queries:
+          type: array
+          description: The asynchronous queries belong to requested resource name.
+          items:
+            $ref: '#/components/schemas/AsyncQueryResponse'
+      description: The response for ListAsyncQueries.
+    AsyncQueryResponse:
+      type: object
+      properties:
+        
+        self:
+          type: string
+          description: >-
+            Self link of the query. Example:
+            `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`
+            or following format if query is running at host level:
+            `/organizations/myorg/hostQueries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`
+        state:
+          type: string
+          description: Query state could be "enqueued", "running", "completed", "failed".  
+        created:
+          type: string
+          description: Creation time of the query.  
+        updated:
+          type: string
+          description: Last updated timestamp for the query.
+        result:
+          $ref: '#/components/schemas/AsyncQueryResult'
+        resultRows:
+          type: string
+          description: ResultRows is available only after the query is completed.
+          format: int64  
+        resultFileSize:
+          type: string
+          description: ResultFileSize is available only after the query is completed.
+        executionTime:
+          type: string
+          description: ExecutionTime is available only after the query is completed.
+        queryParams:
+          $ref: '#/components/schemas/QueryMetadata'
+        error:
+          type: string
+          description: Error is set when query fails.
+        name:
+          type: string
+          description: Asynchronous Query Name.  
+        reportDefinitionId:
+          type: string
+          description: Asynchronous Report ID.
+    AsyncQueryResult:
+      type: object
+      properties:
+        expires:
+          type: string
+          description: Query result will be unaccessable after this time.
+        self:
+          type: string
+          description: >-
+            Self link of the query results. Example:
+            `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`
+            or following format if query is running at host level:
+            `/organizations/myorg/hostQueries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`
+    QueryMetadata:
+      type: object
+      properties:
+        timeUnit:
+          type: string
+          description: Query GroupBy time unit.
+        outputFormat:
+          type: string
+          description: Output format.
+        endTimestamp:
+          type: string
+          description: End timestamp of the query range.
+        dimensions:
+          type: array
+          description: Dimensions of the AsyncQuery.
+          items:
+            type: string
+        startTimestamp:
+          type: string
+          description: Start timestamp of the query range.
+        metrics:
+          type: array
+          description: >-
+            Metrics of the AsyncQuery. Example:
+            ["name:message_count,func:sum,alias:sum_message_count"]
+          items:
+            type: string
+    QueryRequest:
+      type: object
+      properties:
+        metrics:
+          type: array
+          description: A list of Metrics.
+          items:
+            $ref: '#/components/schemas/QueryMetric'
+        dimensions:
+          type: array
+          description: >-
+            A list of dimensions.
+            https://docs.apigee.com/api-platform/analytics/analytics-reference#dimensions
+          items:
+            type: string
+        timeRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRange' 
+        filter:
+          type: string
+          description: >-
+            Boolean expression that can be used to filter data. Filter
+            expressions can be combined using AND/OR terms and should be fully
+            parenthesized to avoid ambiguity. See Analytics metrics, dimensions,
+            and filters reference
+            https://docs.apigee.com/api-platform/analytics/analytics-reference
+            for more information on the fields available to filter on. For more
+            information on the tokens that you use to build filter expressions,
+            see Filter expression syntax.
+            https://docs.apigee.com/api-platform/analytics/asynch-reports-api#filter-expression-syntax  
+        outputFormat:
+          type: string
+          description: >-
+            Valid values include: `csv` or `json`. Defaults to `json`. Note:
+            Configure the delimiter for CSV output using the csvDelimiter
+            property.
+           
+        csvDelimiter:
+          type: string
+          description: >-
+            Delimiter used in the CSV file, if `outputFormat` is set to `csv`.
+            Defaults to the `,` (comma) character. Supported delimiter
+            characters include comma (`,`), pipe (`|`), and tab (`\t`).
+        name:
+          type: string
+          description: Asynchronous Query Name.      
+    QueryMetric:
+      type: object
+      properties:
+        alias:
+          type: string
+          description: >-
+            Alias for the metric. Alias will be used to replace metric name in
+            query results.
+        operator:
+          type: string
+          description: One of `+`, `-`, `/`, `%`, `*`.
+        value:
+          type: string
+          description: Operand value should be provided when operator is set.
+        function:
+          type: string
+          description: 'Aggregation function: avg, min, max, or sum.'
+        name:
+          type: string
+          description: Required. Metric name.
+      description: >-
+        More info about Metric:
+        https://docs.apigee.com/api-platform/analytics/analytics-reference#metrics
+    QueryResponse:
+      type: object
+      properties:
+        self:
+          type: string
+          description: >-
+            Self link of the query. Example:
+            `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`
+            or following format if query is running at host level:
+            `/organizations/myorg/hostQueries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`
+        state:
+          type: string
+          description: Query state could be "enqueued", "running", "completed", "failed".
+        created:
+          type: string
+          description: Creation time of the query.     
+    AsyncQueryResultUrlResponse:
+      type: object
+      properties:
+        urls:
+          type: array
+          description: The list of Signed URLs generated by the CreateAsyncQuery request
+          items:
+            $ref: >-
+              #/components/schemas/AsyncQueryResultUrlResponseURLInfo
+      description: The response for GetAsyncQueryResultUrl
+    AsyncQueryResultUrlResponseURLInfo:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: >-
+            The signed URL of the JSON data. Will be of the form
+            `https://storage.googleapis.com/example-bucket/cat.jpeg?X-Goog-Algorithm=
+            GOOG4-RSA-SHA256&X-Goog-Credential=example%40example-project.iam.gserviceaccount
+            .com%2F20181026%2Fus-central1%2Fstorage%2Fgoog4_request&X-Goog-Date=20181026T18
+            1309Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=247a2aa45f16
+            9edf4d187d54e7cc46e4731b1e6273242c4f4c39a1d2507a0e58706e25e3a85a7dbb891d62afa849
+            6def8e260c1db863d9ace85ff0a184b894b117fe46d1225c82f2aa19efd52cf21d3e2022b3b868dc
+            c1aca2741951ed5bf3bb25a34f5e9316a2841e8ff4c530b22ceaa1c5ce09c7cbb5732631510c2058
+            0e61723f5594de3aea497f195456a2ff2bdd0d13bad47289d8611b6f9cfeef0c46c91a455b94e90a
+            66924f722292d21e24d31dcfb38ce0c0f353ffa5a9756fc2a9f2b40bc2113206a81e324fc4fd6823
+            a29163fa845c8ae7eca1fcf6e5bb48b3200983c56c5ca81fffb151cca7402beddfc4a76b13344703
+            2ea7abedc098d2eb14a7`
+        md5:
+          type: string
+          description: The MD5 Hash of the JSON data
+        sizeBytes:
+          type: string
+          description: The size of the returned file in bytes
+          format: int64
+      description: A Signed URL and the relevant metadata associated with it.
+    ListCustomReportsResponse:
+      type: object
+      properties:
+        qualifier:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomReportResponse'
+      description: This message encapsulates a list of custom report definitions
+    CustomReportRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            Required. Unique identifier for the report T his is a legacy field
+            used to encode custom report unique id
+        displayName:
+          type: string
+          description: This is the display name for the report
+        metrics:
+          type: array
+          description: Required. This contains the list of metrics
+          items:
+            $ref: '#/components/schemas/CustomReportMetric'
+        dimensions:
+          type: array
+          description: This contains the list of dimensions for the report
+          items:
+            type: string
+        filter:
+          type: string
+          description: This field contains the filter expression    
+        chartType:
+          type: string
+          description: This field contains the chart type for the report
+    CustomReportResponse:
+      type: object
+      properties:      
+        name:
+          type: string
+          description: >-
+            Required. Unique identifier for the report T his is a legacy field
+            used to encode custom report unique id
+      
+        displayName:
+          type: string
+          description: This is the display name for the report
+        metrics:
+          type: array
+          description: Required. This contains the list of metrics
+          items:
+            $ref: '#/components/schemas/CustomReportMetric'
+        dimensions:
+          type: array
+          description: This contains the list of dimensions for the report
+          items:
+            type: string
+        filter:
+          type: string
+          description: This field contains the filter expression    
+        createdAt:
+          type: string
+          description: 'Output only. Unix time when the app was created json key: createdAt'
+          format: int64
+          readOnly: true
+        lastModifiedAt:
+          type: string
+          description: >-
+            Output only. Modified time of this entity as milliseconds since
+            epoch. json key: lastModifiedAt
+          format: int64
+          readOnly: true
+        chartType:
+          type: string
+          description: This field contains the chart type for the report
+        organization:
+          type: string
+          description: Output only. Organization name
+          readOnly: true
+    CustomReportMetric:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of the metric
+        function:
+          type: string
+          description: aggregate function
+      description: >-
+        This encapsulates a metric property of the form sum(message_count) where
+        name is message_count and function is sum
+    Schema:
+      type: object
+      properties:
+        dimensions:
+          type: array
+          description: >-
+            List of schema fields grouped as dimensions such as `organization`, `environment`, and `apiproxy`.
+          items:
+            $ref: '#/components/schemas/SchemaElement'      
+        metrics:
+          type: array
+          description: >-
+            List of schema fields grouped as dimensions that can be used with an
+            aggregate function such as `sum`, `avg`, `min`, and `max`.
+          items:
+            $ref: '#/components/schemas/SchemaElement'
+    SchemaElement:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the field.
+        properties:
+          $ref: '#/components/schemas/SchemaSchemaProperty'
+      description: Message type for the schema element
+    SchemaSchemaProperty:
+      type: object
+      properties:
+        createTime:
+          type: string
+          description: >-
+            Time the field was created in RFC3339 string form. For example:
+            `2016-02-26T10:23:09.592Z`.
+        custom:
+          type: string
+          description: >-
+            Flag that specifies whether the field is standard in the dataset or
+            a custom field created by the customer. `true` indicates that it is
+            a custom field.
+        type:
+          type: string
+          description: Data type of the field.
+        
+      description: Properties for the schema field.
+    Metrics:
+      type: object
+      properties:
+        name:
+          type: string
+          example: message_count
+        function:
+          type: string
+          example: max
+    Query:
+    
+      type: object
+      properties:
+        name:
+          type: string
+          example: TestName1
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metrics'
+        dimensions:
+          type: array
+          items:
+            type: string
+            example: apiproxy
+        timeRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRange'
+        filter:
+          type: string
+          example: apiproxy like 'hello%'
+        outputFormat:
+          type: string
+          example: csv
+        csvDelimiter:
+          type: string
+          example: ""
+    TimeRange:
+      type: object
+      properties:
+        start:
+          type: string
+          example: 2023-01-29T00:13:00Z
+        end:
+          type: string
+          example: 2023-01-29T00:18:00Z
+    '400':
+      type: object
+      properties:
+        error:
+          type : object
+          properties : 
+            code : 
+             type: integer
+             example: 400
+            message:
+             type: string
+             example: Bad Request
+            errorDetails:
+             type: string
+             example: Invalid Request
+    '401':
+      type: object
+      properties:
+        error:
+          type : object
+          properties : 
+            code : 
+             type: integer
+             example: 401
+            message:
+             type: string
+             example: Request had invalid authentication credentials
+            errorDetails:
+             type: string
+             example: Invalid Access Token. Fetch a new toke and try again. 
+    '403':
+      type: object
+      properties:
+        error:
+          type : object
+          properties : 
+            code : 
+             type: integer
+             example: 403
+            message:
+             type: string
+             example: Permission denied on resource
+            errorDetails:
+             type: string
+             example: Permission denied to access the resource          
+    '404':
+      type: object
+      properties:
+        error:
+          type : object
+          properties : 
+            code : 
+             type: integer
+             example: 404
+            message:
+              type: string
+              example: Resource Not Found
+            errorDetails:
+              type: string
+              example: Requested resource cannot be found
+    '409':
+      type: object
+      properties:
+        error:
+          type : object
+          properties : 
+            code : 
+             type: integer
+             example: 409
+            message:
+              type: string
+              example: Conflict
+            errorDetails:
+              type: string
+              example: Consumer report already exists                    
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+
+security:
+  - bearerAuth: []
