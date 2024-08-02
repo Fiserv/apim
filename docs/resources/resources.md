@@ -7,6 +7,6 @@
  # Postman Collection
 
 <!-- theme: info -->  
-> [Download Postman Collection for apim ](https://github.com/Fiserv/banking-hub/files/12516540/fts-apim-postman-collection.zip)
+> [Download Postman Collection for apim ](https://github.com/Fiserv/banking-hub/files/assets/fts-apim-postman-collection.zip)
 
 
