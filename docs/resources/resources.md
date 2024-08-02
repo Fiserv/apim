@@ -1,7 +1,7 @@
 # API Specifications
 
 <!-- theme: info -->  
-> [Download API Specifications for apim ](https://github.com/Fiserv/apim/blob/feature/assets/APIM-APISpecs/fts-apim-swagger.zip)
+> [Download API Specifications for apim ](https://github.com/Fiserv/apim/assets/APIM-APISpecs/fts-apim-swagger.zip)
 
 
  # Postman Collection
