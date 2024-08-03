@@ -18,10 +18,10 @@
 # Postman Collection
 
 <!-- theme: info -->  
-> [Download Postman Collection for Consumer-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Co-V1.zip)
+> [Download Postman Collection for Consumer-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Consumer-Management-V1.zip)
 
 <!-- theme: info -->  
-> [Download Postman Collection for Product-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Product-Management-v1.zip)
+> [Download Postman Collection for Product-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Product-Management-V1.zip)
 
 <!-- theme: info -->  
 > [Download Postman Collection for Rateplan-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Rateplan-Management-V1.zip)
