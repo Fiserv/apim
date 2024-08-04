@@ -13,7 +13,7 @@ Perform the following steps to create an account on Fiserv Developer Studio:
 4.	Sign in to your Fiserv Developer Studio account once it is activated
 
 
-### Generating an Access Token
+## Generating Access Token
 ### URL
 
 ``POST https://connect-dev.fiservapis.com/fts/apim/consumer-management/v1/token/generate ``
