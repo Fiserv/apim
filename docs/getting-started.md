@@ -16,7 +16,7 @@ Topics covered:
 -	How to get Authentication keys 
 
 
-[**Bknow our standard api structure**](?path=docs/getting-started/know-our-standard-api-structure.md "Click to read full article")
+[**know our standard api structure**](?path=docs/getting-started/know-our-standard-api-structure.md "Click to read full article")
 
 Topics covered:
 - How send request to APIM RESTful APIs.
