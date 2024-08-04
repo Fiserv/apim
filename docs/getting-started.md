@@ -16,7 +16,7 @@ Topics covered:
 -	How to generating access token 
 
 
-[**know our standard api structure**](?path=docs/getting-started/know-our-standard-api-structure.md "Click to read full article")
+[**Know our standard api structure**](?path=docs/getting-started/know-our-standard-api-structure.md "Click to read full article")
 
 Topics covered:
 - Describes a standard structure of request and response message of APIM APIs
