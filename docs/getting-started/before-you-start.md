@@ -13,7 +13,7 @@ Perform the following steps to create an account on Fiserv Developer Studio:
 4.	Sign in to your Fiserv Developer Studio account once it is activated
 
 
-### Generating an Access Token
+## Generating Access Token
 ### URL
 
 ``POST https://connect-dev.fiservapis.com/fts/apim/consumer-management/v1/token/generate ``
@@ -23,7 +23,7 @@ From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
 
-[Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
+![Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
 )
 
 
@@ -35,7 +35,7 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 
 
 
-[Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
+![Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
 
 ### Response
 
@@ -58,5 +58,5 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 }
 ```
 
-[AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
+![AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
    
