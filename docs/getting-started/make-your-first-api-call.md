@@ -53,6 +53,7 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
     "status": "approved"
 }
 ```
+
 [AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
 
 To  make an API call using Postman application:
@@ -62,7 +63,7 @@ To  make an API call using Postman application:
 4.	Insert the request URL
 5.	Under the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
 
-[Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/assets/images/Bearer Token-screenshot.png)
+[Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/assets/images/Bearer-Token-screenshot.png)
 
 6.	Insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST AND PUT API methode:
 
