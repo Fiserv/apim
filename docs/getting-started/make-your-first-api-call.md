@@ -10,51 +10,9 @@ To make an API call, you need:
 
   
 ### Generating an Access Token
-### URL
+To generate an access token, refer to the [Generating Access Token](?path=docs/getting-started/before-you-start.md#generating-access-token) section.
 
-``POST https://connect-dev.fiservapis.com/fts/apim/consumer-management/v1/token/generate ``
-
-### Authorization
-From the authirization select Basic Auth and provide:
-
-``Username= **API key** and Password= **API secret**``
-
-![Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
-)
-
-
-### Request Body
-
-From the Body tab, select the **x-www-form-urlencoded** radio button and enter the following key-value pair:
-
-``grant_type = client_credentials``
-
-
-
-![Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
-
-### Response
-
-**Sample Response**
-```
-{
-    "api_product_list": "[FTS-APIM-APIHub-Product]",
-    "api_product_list_json": [
-        "FTS-APIM-APIHub-Product"
-    ],
-    "organization_name": "prj-fisv-n-apigeee4aa22a1",
-    "token_type": "BearerToken",
-    "issued_at": "1722795870202",
-    "client_id": "zTB234Hoth3er7LXVT6p87erwgZAqjyyigfhIY",
-    "access_token": "hgjZibY1t4eRgddgNuY8KmUqF6fyreA",
-    "application_name": "dwel234-412346-9451-90861456841313",
-    "scope": "",
-    "expires_in": "899",
-    "status": "approved"
-}
-```
-
-![AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
+### Make an API call 
 
 To  make an API call using Postman application:
 1. Download postman collection from Resources
@@ -68,12 +26,12 @@ To  make an API call using Postman application:
 
 4. Select collection from the list
 
-5. Under the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
+5. Select the API and under the Authentication tab, Auth Type should be Bearer Token and insert access token in the Token box
 
 ![Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Bearer-Token-screenshot.png)
 
 
-6.	Select the API and insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST AND PUT API methode:
+6.	Insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST AND PUT API methode:
 
 ![API-RequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/API-RequestBody-screenshot.png)
 
