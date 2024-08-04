@@ -6,7 +6,7 @@ To make an API call, you need:
 - Fiserv Dev Studio user account  
 - need to download postman collection
 - import postman collection in to postman app
-- Get API_key and APIt_secret
+- Get API_key and API_secret
 
   
 ### Generating an Access Token
@@ -45,9 +45,9 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
     "organization_name": "prj-fisv-n-apigeee4aa22a1",
     "token_type": "BearerToken",
     "issued_at": "1722795870202",
-    "client_id": "zTB234Hoth3er7LXVT6p87erwgZAqjLefhIY",
-    "access_token": "CrhZibY1t4eRXONuY8KmUqF6hyeA",
-    "application_name": "db2f77f0-9a22-42f6-9451-546149841313",
+    "client_id": "zTB234Hoth3er7LXVT6p87erwgZAqjyyigfhIY",
+    "access_token": "hgjZibY1t4eRgddgNuY8KmUqF6fyreA",
+    "application_name": "dwel234-412346-9451-90861456841313",
     "scope": "",
     "expires_in": "899",
     "status": "approved"
@@ -57,11 +57,16 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 [AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
 
 To  make an API call using Postman application:
-1. Open a web or desktop application of Postman.
-2.	Create a new HTTP request
-3.	Set the API method to POST, GET OR PUT
-4.	Insert the request URL
-5.	Under the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
+1. Download postman collection from Resources
+
+[Download-PostmanCollection](https://github.com/Fiserv/apim/blob/develop/assets/images/Download-PostmanCollection-screenshot.png)
+
+2. Open a web or desktop application of Postman.
+3. Import postman collection to Postman app:
+
+
+
+4. Under the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
 
 [Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/assets/images/Bearer-Token-screenshot.png)
 
@@ -72,7 +77,7 @@ To  make an API call using Postman application:
  <!-- theme: info -->
     > #### Note
     >
-    > Default request-payload can be copied from the API Explorer document and you may modify certain fields as mentioned in the documentation.
+    > Default request-payload can be copied from the API Postman collection document and you may modify.
 7.	Modify the field values in JSON code that you want to test POST AND PUT API methode
 8.	Click Send. API response is generated in the Response section
    
