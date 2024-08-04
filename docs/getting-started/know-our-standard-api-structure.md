@@ -1,6 +1,6 @@
 # Know Our Standard API Structure 
 
-This section describes a standard structure of request and response message of Banking Hub RESTful APIs. 
+This section describes a standard structure of request and response message of APIM APIs. 
 
 ## Request Message
 
