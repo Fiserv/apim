@@ -19,7 +19,7 @@ From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
 
-[Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
+![Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
 )
 
 
@@ -31,7 +31,7 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 
 
 
-[Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
+![Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
 
 ### Response
 
@@ -54,12 +54,12 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 }
 ```
 
-[AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
+![AccessToken-Response](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/AccessToken-Response-screenshot.png)
 
 To  make an API call using Postman application:
 1. Download postman collection from Resources
 
-[Download-PostmanCollection](https://github.com/Fiserv/apim/blob/develop/assets/images/Download-PostmanCollection-screenshot.png)
+![Download-PostmanCollection](https://github.com/Fiserv/apim/blob/develop/assets/images/Download-PostmanCollection-screenshot.png)
 
 2. Open a web or desktop application of Postman.
 3. Import postman collection to Postman app:
@@ -68,11 +68,11 @@ To  make an API call using Postman application:
 
 4. Under the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
 
-[Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/assets/images/Bearer-Token-screenshot.png)
+![Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Bearer-Token-screenshot.png)
 
 6.	Insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST AND PUT API methode:
 
-[API-RequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/assets/images/API-RequestBody-screenshot.png)
+![API-RequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/API-RequestBody-screenshot.png)
 
  <!-- theme: info -->
     > #### Note
