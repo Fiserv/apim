@@ -27,3 +27,7 @@ From the authirization select Basic Auth and providr Username= **API key** and P
 From the Body tab, select the **x-www-form-urlencoded** radio button and enter the following key-value pair:
 
 ``grant_type = client_credentials``
+
+
+
+[Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
