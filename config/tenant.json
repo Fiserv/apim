@@ -15,7 +15,7 @@
       ]
     }
   ],
-  "getStartedFilePath": "docs/getting-started",
+  "getStartedFilePath": "/docs/getting-started",
   "resourcesFilePath": "/docs/resources/resources.md",
   "product": {
     "featured": true,
