@@ -77,9 +77,8 @@ All API requests must contain the following components:
 *	[API Method](#api-method)
 * [Request URL](#request-url)
 * [Access Token](#access-token)
-*	[Request Authorization](#request-authorization)
 *	[Request Body](#request-body)
-*	
+	
 ### API Method
 
 API methods are  GET, POST or PUT
@@ -97,11 +96,6 @@ Request URL is formed by appending Host URL,Base path and API path.
 API key and API secret are required to generate an access token. 
 
 To generate an access token, refer to the [Generating Access Token](?path=docs/getting-started/before-you-start.md#generating-access-token) section.
-
-### Request Authorization
-
-From the Authentication tab, select the Type value as Bearer Token and insert access token in the Token box
-  
 
 ### Request Body
 
