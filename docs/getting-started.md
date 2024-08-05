@@ -65,7 +65,7 @@ From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
 
-![Postman-Authorization-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png)
+![Postman-Authorization](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png)
 
 ### Request Body
 
@@ -73,7 +73,7 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 
 ``grant_type = client_credentials``
 
-![Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
+![Postman-OauthRequestBody](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
 
 ### Response
 
