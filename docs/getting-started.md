@@ -29,17 +29,13 @@ From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
 
-![Postman-Authorization-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
-)
-
+![Postman-Authorization-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png)
 
 ### Request Body
 
 From the Body tab, select the **x-www-form-urlencoded** radio button and enter the following key-value pair:
 
 ``grant_type = client_credentials``
-
-
 
 ![Postman-OauthRequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
 
@@ -83,11 +79,13 @@ All API requests must contain the following components:
 * [Access Token](#access-token)
 *	[Request Authorization](#request-authorization)
 *	[Request Body](#request-body)
+*	
 ### API Method
 
- API methods are  GET, POST or PUT
+API methods are  GET, POST or PUT
 
- ### Request URL
+### Request URL
+  
 
 Request URL is formed by appending Host URL,Base path and API path. 
 
