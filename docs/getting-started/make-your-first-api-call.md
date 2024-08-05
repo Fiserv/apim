@@ -26,7 +26,7 @@ To  make an API call using Postman application:
 
 4. Select collection from the list
 
-5. Select the API and under the Authentication tab, Auth Type should be Bearer Token and insert access token in the Token box
+5. Select the API and under the Authentication tab, select Auth Type as Bearer Token and insert access token in the Token box
 
 ![Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Bearer-Token-screenshot.png)
 
@@ -38,7 +38,7 @@ To  make an API call using Postman application:
  <!-- theme: info -->
     > #### Note
     >
-    > Default request-payload can be copied from the API Postman collection document and you may modify.
-7.	Modify the field values in JSON code that you want to test POST AND PUT API methode
+    > You can use request-payload from Postman collection document and you may modify.
+7.	Modify the field values in JSON code that you want to test POST and PUT API method
 8.	Click Send. API response is generated in the Response section
    
