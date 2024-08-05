@@ -4,8 +4,8 @@ This section describes how to make API call  API and getting a response payload 
 ## Prerequisites
 To make an API call, you need:
 - Fiserv Dev Studio user account  
-- need to download postman collection
-- import postman collection in to postman app
+- Need to download postman collection
+- Import postman collection in to postman app
 - Get API_key and API_secret
 
   
