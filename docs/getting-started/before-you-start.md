@@ -23,7 +23,7 @@ From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
 
-![Postman-Authorization-screenshot.png](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
+![Postman-Authorization-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-Authorization-screenshot.png
 )
 
 
