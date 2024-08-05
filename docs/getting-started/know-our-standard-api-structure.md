@@ -13,9 +13,10 @@ All API requests must contain the following components:
 *	[Request Body](#request-body)
 ### API Method
 
- API methods are  GET, POST or PUT
+API methods are  GET, POST or PUT
 
- ### Request URL
+### Request URL
+
 
 Request URL is formed by appending Host URL,Base path and API path. 
 
