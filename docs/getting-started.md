@@ -7,7 +7,6 @@
 > This documentation assumes you are familiar with RESTful APIs and know how to perform the REST API calls.
 
 
-## Read More
 
 [**Before You Start**](?path=docs/getting-started/before-you-start.md "Click to read full article")
 
@@ -25,4 +24,4 @@ Topics covered:
 
 Topics covered:
 -	How to send an API request to APIM APIs
--	How to make API call Postman,thunder Client and others
+-	How to test APIs using Postman,thunder Client and others testing tools
