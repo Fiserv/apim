@@ -6,8 +6,15 @@ titles: Before You Start, Know Our Standard API Structure, Make Your First API C
 APIM Consumer onboarding and Monetization center offers Fiserv developers access to seamlessly integrate with self-service APIs that perform consumer onboarding onto APIM and Ping IDPs, Product, Subscription and Reports management.
 
 ## Before You Start
-<!-- theme: info -->
+
 Before you start integration, it is important to sign in on the Fiserv Developer Studio to test the APIM Consumer onboarding and Monetization APIs in the Mock server. You may choose to test APIs using the Third-party API Testing Tools of your choice. 
+
+<!-- theme: info -->
+> #### Note for Developers 
+>
+> To get access to a dedicated test environment, optional and ancillary services, including dedicated technical services, upgrade to a paid Developer Studio subscription plan <a href="https://appmarket.fiservapps.com/fintech" > here</a>.
+
+
 
 ## Register on Fiserv Developer Studio
 
@@ -76,6 +83,12 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 ![Postman-OauthRequestBody](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Postman-OauthRequestBody-screenshot.png)
 
 ### Response
+
+|     Field Name      |     Description                                          |     Type      |
+|---------------------|----------------------------------------------------------|---------------|
+|   ``access_token``    |     Generated access token   value                       |     string    |
+|``expires_in``       | <p>Time in milliseconds until the generated token is valid.</p> <p>**Note:** Once generated, the access token is valid for approximately 15 minutes. You can reuse the access token until it expires. </p> | number        |
+|    ``token_type``   |     Type of access token                                 |     string    |
 
 **Sample Response**
 ```
@@ -225,7 +238,17 @@ Sample response payload for **Create a consumer** API request.
 
 # Make Your First API Call
 
-This section describes how to make API call  API and getting a response payload using  testing tools such as Postman,thunder Client and others.
+This section describes how to make API call and getting a response payload. 
+## Using Third-Party API Testing Tools
+
+You can test our APIs in using third-party API testing tools, such as Postman, thunder Client, Apigee, JMeter and others.
+
+<!-- theme: info -->
+> #### Tip
+>
+> We recommend you to refer to the [Know Our Standard API Structure](#tab-know_our_standard_api_structure) section to understand the API structure prior to testing the APIs in any third-party tool.
+
+
 ## Prerequisites
 To make an API call, you need:
 - Fiserv Dev Studio user account  
@@ -235,7 +258,16 @@ To make an API call, you need:
 
   
 ### Generating an Access Token
-To generate an access token, refer to the [Generating Access Token](?path=docs/getting-started/before-you-start.md#generating-access-token) section.
+
+An access token is used to authenticate your API build and allows you to use the Fiserv APIs securely. **API key** and **API secret** values obtained from Workspace are required to generate an access token. 
+  
+To generate an access token, refer to the "Generating Access Token" section under the [Before You Start](#tab-before_you_start) tab.
+
+
+<!-- theme: info -->
+> #### Note
+>
+> Once generated, the access token is valid for approximately 15 minutes. You can reuse the access token until it expires.
 
 ### Make an API call 
 
