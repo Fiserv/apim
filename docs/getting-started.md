@@ -147,16 +147,16 @@ sample request payload for **Create a consumer** API request.
 
 ```
 {
-    "firstName": "abc",
-    "lastName": "abc",
-    "userName": "abc11@fiserv.com",
-    "email": "abc1@fiserv.com",
+    "firstName": "abcd",
+    "lastName": "abcd",
+    "userName": "abc1@fiserv.com",
+    "email": "abc@fiserv.com",
     "billingType": "POSTPAID",
     "company": "cars",
     "category": "abc-a123-tysd",
     "phone": "1234567890",
     "status": "active",
-    "legalName": "abcd",
+    "legalName": "John Doe",
     "address": {
         "address1": "Test",
         "city": "Atlanta",
@@ -164,10 +164,14 @@ sample request payload for **Create a consumer** API request.
         "zip": "30090",
         "country": "USA"
     },
-    "attributes":[
+    "attributes": [
         {
             "name": "AllOWED_IP_RANGES",
-            "value": "10.234.0.0/90"
+            "value": "10.234.0.0/19"
+        },
+        {
+            "name": "COMPANY",
+            "value": "cars"
         },
         {
             "name": "IDP",
@@ -274,7 +278,7 @@ To generate an access token, refer to the "Generating Access Token" section unde
 To  make an API call using Postman application:
 1. Download postman collection from Resources
 
-![Download-PostmanCollection](https://github.com/Fiserv/apim/blob/develop/assets/images/Download-PostmanCollection-screenshot.png)
+![Download-PostmanCollection](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Download-PostmanCollection-screenshot.png)
 
 2. Open a web or desktop application of Postman.
 3. Import postman collection to Postman app:
