@@ -130,6 +130,8 @@ Request URL is formed by appending Host URL,Base path and API path.
 <!-- theme: info -->
 > **Request URL = Host URL + Base path + API path**
 
+![RequestURL](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/RequestURL-Screenshot.png)
+
 ### Access Token
 
 API key and API secret are required to generate an access token. 
