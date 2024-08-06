@@ -31,8 +31,84 @@
 - sections:
   - title: Getting Started
     link: docs/getting-started.md
-- sections:
-  - title: Release notes
+- sections:   
+  - title: Consumer Management
+    link: docs/Consumer/api-integration-homePage.md
     sections:
-    - title: March 2022
-      link: docs/release-notes/2022/march.md
+    - title: create a Consumer
+      link: docs/Consumer/CreateConsumer.md
+    - title: list of consumer
+      link: docs/Consumer/ListConsumer.md
+    - title: Get consumer
+      link: docs/Consumer/GetConsumer.md
+    - title: Update consumer
+      link: docs/Consumer/UpdateConsumer.md
+    - title: set consumer status
+      link: docs/Consumer/SetConsumerStatus.md
+    - title: Lists all apps
+      link: docs/Consumer/LisTApps.md
+    - title: Creates an app
+      link: docs/Consumer/CreateApp.md
+    - title: Update app
+      link: docs/Consumer/UpdateApp.md
+    - title: Get Consumer app
+      link: docs/Consumer/GetApp.md
+    - title: Approve, revoke, or generate API key for consumer app
+      link: docs/Consumer/ApproveRevokeApp.md
+  - title: Product Management
+    link: docs/Consumer/api-integration-homePage.md
+    sections:
+    - title: create a Product
+      link: docs/Consumer/CreateProduct.md
+    - title: list of Products
+      link: docs/Consumer/ListProduct.md
+    - title: Get Product
+      link: docs/Consumer/GetProduct.md
+    - title: Update Product
+      link: docs/Consumer/UpdateProduct.md
+  - title: Rateplan Management
+    link: docs/Consumer/api-integration-homePage.md
+    sections:
+    - title: create a Rateplan 
+      link: docs/Consumer/CreateRateplan.md
+    - title: list of Rateplan
+      link: docs/Consumer/ListRateplan.md
+    - title: Get Rateplan
+      link: docs/Consumer/GetRateplan.md
+    - title: Update Rateplan
+      link: docs/Consumer/UpdateRateplan.md   
+  - title: Subscription Management
+    link: docs/Consumer/api-integration-homePage.md
+    sections:
+    - title: create a Subscription 
+      link: docs/Consumer/CreateSubscription.md
+    - title: list of Subscription
+      link: docs/Consumer/ListSubscription.md
+    - title: Get Subscription
+      link: docs/Consumer/GetSubscription.md
+    - title: Expire Subscription
+      link: docs/Consumer/ExpireSubscription.md 
+  - title: Reports Management
+    link: docs/Consumer/api-integration-homePage.md
+    sections:
+    - title: create a Queries
+      link: docs/Consumer/CreateQueries.md
+    - title: list of Queries
+      link: docs/Consumer/ListQueries.md
+    - title: Get Queries
+      link: docs/Consumer/GetQueries.md
+    - title: Get a Query Result
+      link: docs/Consumer/GetQueryResult.md
+    - title: Get a Query Result URL
+      link: docs/Consumer/GetQueryResultURL.md
+    - title: Lists Custom Report
+      link: docs/Consumer/ListReport.md
+    - title: Creates Custom Report
+      link: docs/Consumer/CreateReport.md
+    - title: Update Custom Report
+      link: docs/Consumer/UpdateReport.md
+    - title: Get Custom Report
+      link: docs/Consumer/GetReport.md
+   
+     
+      
