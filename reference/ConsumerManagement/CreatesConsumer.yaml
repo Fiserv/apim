@@ -1,0 +1,1045 @@
+openapi: 3.0.3
+info:
+  title: FTS-APIM-Consumer-Management-V1 - OpenAPI 3.0
+  description: Consumer API registers consumers on API Gateway and the identity provider
+    that is used by the API Gateway (Ping etc..). After they are registered,
+    consumers register their apps,
+     choose the APIs they want to use, and receive the unique API credentials (consumer keys and secrets) needed to access the APIs.
+  contact:
+    name: FTS APIM Support
+    email: DL-NA-APIM@fiserv.com     
+  version: 1.0.0
+servers:
+ 
+  - url: https://connect-uat.fiservapis.com/fts/apim/consumer-management/v1
+    description: UAT server for test purposes
+paths:
+  /consumers:
+    post:
+      tags:
+        - Consumer
+      summary: Create consumer
+      description: Creates a profile for a consumer in an   organization and creates the
+        associated organization of the consumer as domain  in Ping. After the
+        Consumer is created, they can register an app and receive the
+        credentials.The Consumer is always created with a status of `active`. To
+        set the status explicitly use the status param of the request 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerRequest'
+            example:
+              firstName: Mike
+              lastName: John
+              userName: mike.john
+              email: ap@fiserv.com
+              billingType: POSTPAID || PREPAID
+              company: cars
+              category: >-
+                7129a342-d66d-4b2b-986c-f44f02016a62 ||
+                5872ea0b-240c-43e4-b258-04490fddeda6 ||
+                22e853fd-78a8-4252-84fa-47ec5bd6f638
+              phone: 1234567890
+              status: active
+              legalName: AP
+              address:
+                address1: office
+                city: pune
+                state: maharashtra
+                zip: 411001
+                country: india
+              attributes:
+              - name: AllOWED_IP_RANGES
+                value: "10.6.140.242/32;10.6.140.241/32;10.6.140.240/32"
+              - name: IDP
+                value: "apigee"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerResponse'
+              example:
+                apps: []
+                email: ap@fiserv.com
+                developerId: e3f13637-6609-41d1-a70f-fe15822db1a0
+                firstName: Name
+                lastName: John
+                userName: string
+                organizationName: firstdatanp
+                status: active
+                attributes:
+                  - name: MINT_DEVELOPER_ADDRESS
+                    value: >-
+                      {"address1":"string","city":"string","state":"string","zip":"string","country":"string"}
+                  - name: MINT_BILLING_TYPE
+                    value: POSTPAID
+                  - name: COMPANY
+                    value: cars
+                  - name: MINT_DEVELOPER_CATEGORY
+                    value: 7129a342-d66d-4b2b-986c-f44f02016a62
+                  - name: MINT_DEVELOPER_PHONE
+                    value: '1234567890'
+                  - name: MINT_DEVELOPER_LEGAL_NAME
+                    value: VN
+                  - name: COMPANY_ID
+                    value: "{\"AICenter\":\"D7mq9m3m0\"}"
+                  - name: IDP
+                    value: "apigee"
+                createdAt: 1672119285892
+                createdBy: ucomapigee@firstdata.com
+                lastModifiedAt: 1672119285892
+                lastModifiedBy: ucomapigee@firstdata.com
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                code: 400
+                message: Missing required params
+                errorDetails: Bad Request
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              example:
+                code: 401
+                message: Invalid Credentials
+                errorDetials: UnAuthorized 
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                code: 404
+                message: Resource not found
+                errorDetials: Not Found
+                
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                code: 500
+                message: Reason for internal server error
+                errorDetials: Internal Server error
+      x-proxy-name: FTS-APIM-Consumer-Management-V1
+      x-group-name: Create Consumer
+      x-child-product-name: Consumer Management          
+
+components:
+  parameters:
+    app:
+      name: app
+      in: path
+      description: The app name
+      required: true
+      schema:
+        type: string
+    consumerEmail:
+      name: consumer-email
+      in: path
+      description: The email Id of the consumer
+      required: true
+      schema:
+        type: string
+    company_name:
+      in: path
+      name: company_name
+      required: true
+      schema:
+        type: string
+      description: Company name.
+    identifier:
+      in: path
+      name: identifier
+      required: true
+      description: Identifier can be a ConsumerId or consumer email address
+      schema:
+        type: string
+        example: ap@fiserv.com || Qwcwefewff-vece3cfc3fe-fc3f3
+    productName:
+      in: query
+      name: productName
+      required: true
+      description: Product Name
+      schema:
+        type: string
+        example: DS-BH-FREE-BTAT2-ENV-6 || testProduct
+    expandTrue:
+      in: query
+      name: expand
+      required: true
+      description: expand true
+      schema:
+        type: boolean
+        example: true
+    attributeName:
+      in: query
+      name: attributename
+      required: false
+      description: Attribute Name
+      schema:
+        type: string
+        example: APM_NUMBER
+    attributeValue:
+      in: query
+      name: attributevalue
+      required: false
+      description: Attribute Value
+      schema:
+        type: string
+        example: DS-BH-FREE-BTAT2-ENV-6
+    status:
+      in: query
+      name: status
+      required: false
+      description: Status of the app. It could be either 'approved' or 'revoked'
+      schema:
+        type: string
+        example: approved
+    Consumer_identifier:
+      in: path
+      name: Consumer_identifier
+      required: true
+      schema:
+        type: string
+      description: identifier address for the Consumer.
+    attribute_name:
+      in: path
+      name: attribute_name
+      required: true
+      schema:
+        type: string
+      description: Name of the attribute.
+    action:
+      in: query
+      name: action
+      required: true
+      schema:
+        type: string
+        example: active
+      description: Status of Consumer. Set to `active` or `inactive`.
+    
+    All:
+      in: query
+      name: attributevalue
+      required: false
+      schema:
+        type: boolean
+    org_name:
+      in: path
+      name: org_name
+      required: true
+      schema:
+        type: string
+      description: Organization name.
+    apiproduct:
+      in: query
+      name: apiproduct_name
+      required: true
+      schema:
+        type: string
+      description: API product name.
+    apiproduct_name:
+      in: path
+      name: apiproduct_name
+      required: true
+      schema:
+        type: string
+      description: API product name.
+    app_name:
+      in: path
+      name: app_name
+      required: true
+      schema:
+        type: string
+      description: name of the app
+    attributename:
+      in: query
+      name: attributename
+      required: false
+      schema:
+        type: string
+      description: >-
+        Name of an attribute defined in the API product profile  on which you
+        want to filter the list.
+    attributevalue:
+      in: query
+      name: attributevalue
+      required: false
+      schema:
+        type: string
+      description: Value of the attribute.
+    consumer_key:
+      in: path
+      name: consumer_key
+      required: true
+      schema:
+        type: string
+      description: consumer_key of app.
+    count:
+      in: query
+      name: count
+      required: false
+      schema:
+        type: integer
+      description: >-
+        **Apigee for Public Cloud only**. Number of API products to return
+        in the API call. The limit is 1000.
+    count_apps:
+      in: query
+      name: count
+      required: false
+      schema:
+        type: integer
+      description: >-
+        **Apigee for Public Cloud only**. Valid when `entity` is set to
+        `apps`. Number of apps to return in the API call. The limit is 100.
+    expand:
+      in: query
+      name: expand
+      required: false
+      schema:
+        type: boolean
+      description: >-
+        Flag that specifies whether to view expanded details about each API
+        product. Set to `true` to view expanded details. Defaults to `false`.
+    startKey:
+      in: query
+      name: startKey
+      required: false
+      schema:
+        type: string
+      description: >-
+        **Apigee for Public Cloud only**. Name of an API product from which
+        to start displaying the list of API products. For example, if you're
+        returning 50 API products at a time (using the count query parameter),
+        you can view products 50-99 by entering the name of the 50th API
+        product. The API product name is case sensitive.
+    startkey:
+      in: query
+      name: startkey
+      required: false
+      schema:
+        type: string
+      description: >-
+        **Apigee  for Public Cloud only**. Valid when `entity` is set to
+        `apps`. Name of an app from which to start displaying the list of apps.
+        For example, if you're returning 50 apps at a time (using the count
+        query parameter), you can view apps 50-99 by entering the name of the
+        50th app. The app name is case sensitive.
+    query:
+      in: query
+      name: query
+      required: false
+      schema:
+        type: string
+      description: >-
+        Set to `list` to list the entities specified by the `entity` query
+        parameter.
+    entity:
+      in: query
+      name: entity
+      required: false
+      schema:
+        type: string
+      description: >-
+        Specify the type of entity for which you want to get a count or list, as
+        defined by the `query` parameter. Valid values include: `keys`, `apps`,
+        `Consumer`, or `companies`. With Apigee, the
+        `Consumer` and `entity` types are not supported.    
+  schemas:
+    companyConsumers:
+      description: "Company."
+      type: "object"
+      properties:
+        developer:
+          type: "array"
+          description: "List of consumers in a company."
+          items:
+            type: "object"
+            properties:
+              email:
+                type: "string"
+                description: "Email address of the consumer."
+              role:
+                type: "string"
+                description: "Role that may be used for access control to app information\
+                  \ by a client, but which is not enforced by Apigee."
+    Companies:
+      description: List of companies.
+      type: object
+      properties:
+        company:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+    Company:
+      description: Company.
+      type: object
+      properties:
+        apps:
+          type: array
+          description: Output only. Apps associated with the company.
+          items:
+            type: string
+        name:
+          description: >-
+            Name of the company. Required when creating a company.
+
+            **Notes**:
+
+            * Company names must use a unique sequence of characters, regardless of case. For example, if you create a company named `CompanyA` and subsequently attempt to create a company named `companya`, an error is thrown.
+
+            * Do not set the company name to `0` (number or string). This value is not supported and will cause unexpected results.
+
+            See <a href="https://docs.apigee.com/api-platform/reference/naming-guidelines">naming restrictions</a>.
+          type: string
+        displayName:
+          type: string
+          description: >-
+            Display name for the company.
+        organization:
+          type: string
+          description: Output only. Organization name.
+        status:
+          type: string
+          description: Output only. Status of the company. Valid values are `active` or `inactive`. Defaults to `active` when creating the company. To change the value, see Update a company.
+        attributes:
+          type: array
+          description: >-
+            Name/value formatted attributes used to extend the default company profile.
+
+            **Note**: With Apigee, the custom attribute limit is 18.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the attribute.
+              value:
+                type: string
+                description: Value of the attribute.
+        createdAt:
+          description: Output only. Time when the company was last modified in seconds since epoch.
+          type: integer
+        lastModifiedAt:
+          description: Output only. Time when the company was last modified in seconds since epoch.
+          type: integer
+        lastModifiedBy:
+          description: Output only. Email address of consumer that last modified the company.
+          type: string
+    CompanyRequest:
+      description: Company.
+      type: object
+      properties:
+        name:
+          description: >-
+            Name of the company. See <a href="https://docs.apigee.com/api-platform/reference/naming-guidelines">naming restrictions</a>. Required when creating a company.
+          type: string
+        displayName:
+          type: string
+          description: >-
+            Display name for the company.
+        attributes:
+          type: array
+          description: >-
+            Name/value formatted attributes used to extend the default company profile.
+
+            **Note**: With Apigee, the custom attribute limit is 18.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the attribute.
+              value:
+                type: string
+                description: Value of the attribute.
+    Address:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: Street address of the bank at which the account is held.
+        city:
+          type: string
+          description: City.
+        state:
+          type: string
+          description: State.
+        zip:
+          type: string
+          description: Zip code.
+        country:
+          type: string
+          description: Country.
+    Attributes:
+      description: API product attributes.
+      properties:
+        attribute:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        mintAttribute:
+          type: array
+          items:
+            $ref: '#/components/schemas/MintAttribute'
+    Attribute:
+      description: API product attribute name and value.
+      properties:
+        name:
+          description: Name of attribute.
+          type: string
+        value:
+          description: Value of attribute.
+          type: string
+    ConsumerAppRequest:
+      type: object
+      required:
+        - apiproducts
+        - name
+      properties:
+        apiproducts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Array'
+          description: API product list
+        consumerKey:
+          type: string
+          description: "Consumer key can be supplied along with consumer secret to set custom value on the app while creating"
+        consumerSecret:
+          type: string
+          description: "Consumer secret can be supplied along with consumer key to set custom value on the app while creating"
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        vendorId:
+          type: string
+          description: >-
+            Unique vendor identification number provided by fiserv to identify
+            vendor
+        applicationId:
+          type: string
+          description: >-
+            Unique identification number for client application used to send the
+            service request
+        applicationName:
+          type: string
+          description: >-
+            Name of the client application that is used to send the service
+            request
+        channel:
+          type: string
+          description: Name of the channel used by the client application
+        name:
+          type: string
+          example: Name of the app
+          description: Name of the consumer app
+        surname:
+          type: string
+          description: Surename of the consumer
+        givenName:
+          type: string
+          description: Given name of the consumer
+        keyExpiresIn:
+          type: string
+          description: For how long the credentials of the app will be valid from the time of app creation in milliseconds
+    ConsumerAppResponse:
+      description: Consumer app details.
+      type: object
+      required:
+        - name
+      properties:
+        appFamily:
+          description: Output only. Family of the app.
+          type: string
+        appId:
+          description: Output only. ID of the app.
+          type: string
+        attributes:
+          description: >-
+            List of attributes used for customizing profile information or for
+            app-specific processing. With Apigee, the
+            custom attribute limit is 18. Note the folowing:
+
+
+            * `DisplayName` is an attribute that provides the app name in the
+             UI. This can be different from the name (unique ID) of the app.
+
+            * `Notes` attribute lets you add notes about the Consumer app.
+
+            * Any other arbitrary name/value pairs you create are included as
+            custom attributes.
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        callbackUrl:
+          description: Output only. ID of the app.
+          type: string
+        createdAt:
+          format: int32
+          description: Output only. Time the app was created in milliseconds since epoch.
+          type: integer
+        createdBy:
+          description: Output only. Email address of the Consumer that created the app.
+          type: string
+        credentials:
+          description: >-
+            Output only. Set of credentials for the app. Credentials are API
+            key/secret pairs associated with API products.
+          type: array
+          items:
+            type: object
+            properties:
+              apiProducts:
+                description: Name and status of API products associated with the app.
+                type: array
+                items:
+                  type: object
+                  $ref: '#/components/schemas/APIProductRef'
+              attributes:
+                description: List of attributes.
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attribute'
+              consumerKey:
+                description: Consumer API key.
+                type: string
+              consumerSecret:
+                description: Consumer secret.
+                type: string
+              expiresAt:
+                description: Time the credentials expire in milliseconds since epoch.
+                format: int32
+                type: integer
+              issuedAt:
+                format: int32
+                description: Time the credentials were issued in milliseconds since epoch.
+                type: integer
+              scopes:
+                description: OAuth scopes.
+                type: array
+                items:
+                  type: string
+              status:
+                description: Status of the credentials.
+                type: string
+        developerId:
+          description: Output only. ID of the Consumer.
+          type: string
+        lastModifiedAt:
+          format: int32
+          description: Output only. Last modified time as milliseconds since epoch.
+          type: integer
+        lastModifiedBy:
+          description: Output only. Email of Consumer that last modified the app.
+          type: string
+        name:
+          description: >-
+            Name of the Consumer app. Required when creating a Consumer app; not
+            required when updating a Consumer app. 
+
+
+            The name is used to uniquely identify the app for this organization
+            and Consumer. Names must begin with an alphanumeric character and
+            can contain letters, numbers, spaces, and the following characters:
+            `. _ # - $ %`. While you can use spaces in the name, we recommend
+            that you use camel case, underscores, or hyphens instead. Otherwise,
+            you will have to URL-encode the app name when you need to include it
+            in the URL of other Edge API calls. See the <a
+            href="https://docs.apigee.com/api-platform/reference/naming-guidelines">naming
+            restrictions</a>. 
+          type: string
+        scopes:
+          description: >-
+            Scopes to apply to the app. The specified scope names must already
+            exist on the API product that you associate with the app.
+          type: array
+          items:
+            type: string
+        status:
+          description: Status of the credential.
+          type: string
+    ConsumerAppsListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Array'
+    ConsumerResponse:
+      type: object
+      required:
+        - email
+        - firstName
+        - lastName
+        - userName
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Array'
+          description: Apps assosicated to the Consumer
+        email:
+          type: string
+          example: ap@fiserv.com
+          description: Email address of the consumer
+        developerId:
+          type: string
+          example: 002ed387-8497-49ce-acd2-db141b6c55b7
+        firstName:
+          type: string
+          example: Name
+          description: First Name of the consumer
+        lastName:
+          type: string
+          example: John
+        userName:
+          type: string
+        organizationName:
+          type: string
+          example: firstdatanp
+          description: Name of the organization associated with the Consumer.
+        status:
+          type: string
+          example: active
+          description: Status of the Consumer
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attributes'
+          description: Attributes assosicated to the Consumer
+        createdAt:
+          type: string
+          example: '1672119285892'
+          description: The timestamp of the consumer onboarded
+        createdBy:
+          type: string
+          example: ucomapigee@firstdata.com
+          description: The POC who onboarded the consumer
+        lastModifiedAt:
+          type: string
+          example: '1672119285892'
+          description: The timestamp of the last modified onboarded consumer
+        lastModifiedBy:
+          type: string
+          example: ucomapigee@firstdata.com
+          description: The POC who last modified the onboarded consumer
+    ConsumerRequest:
+      type: object
+      required:
+        - email
+        - firstName
+        - lastName
+        - userName
+        - company
+        - billingType
+        - address
+        - category
+        - phone
+        - legalName
+      properties:
+        firstName:
+          type: string
+          example: Name
+          description: First Name of consumer
+        lastName:
+          type: string
+          example: John
+          description: Last Name of consumer
+        userName:
+          type: string
+          example: MikeJohn
+          description: User Name of consumer
+        email:
+          type: string
+          example: ap@fiserv.com
+          description: Email address of the consumer
+        billingType:
+          type: string
+          example: POSTPAID || PREPAID
+          description: Billing type. Defaulted to 'POSTPAID' if not provided.
+        company:
+          type: string
+          description: Name of fintech(Company)
+          example: cars
+        category:
+          type: string
+          description: >-
+            A group name that created for to manage the monetization
+            configurations
+          example: 7129a342-d66d-4b2b-986c-f44f02016a62
+        phone:
+          type: string
+          example: 904-333-9999
+          description: phone no#
+        status:
+          type: string
+          example: active
+          description: Status of consumer
+        legalName:
+          type: string
+          example: AP
+          description: Legal Name of Consumer
+        address:
+          type: object
+          $ref: '#/components/schemas/Address'
+    Array:
+      type: string
+      example: test
+    MintAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ADMIN_email
+        value:
+          type: string
+          example: ap@fiser.com
+    Keys:
+      description: Consumer key and secret.
+      type: object
+      properties:
+        apiProducts:
+          type: array
+          description: >-
+            List of API products associated with an API key. Required when
+            adding an API product to a key.
+          items:
+            type: object
+            properties:
+              apiproduct:
+                type: string
+                description: Name of the API product.
+              status:
+                type: string
+                description: >-
+                  Status of the API product. Valid values include `approved` or
+                  `revoked`.
+        attributes:
+          type: array
+          description: List of attributes associated with an API key.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the custom attribute.
+              value:
+                type: string
+                description: Value of the custom attribute.
+        consumerKey:
+          description: Consumer key.
+          type: string
+        consumerSecret:
+          description: Consumer secret.
+          type: string
+        expiresAt:
+          type: integer
+          description: >-
+            Time at which the consumer key and secret expire in milliseconds
+            since epoch. Set to -1 to never expire.
+        issuedAt:
+          type: integer
+          description: >-
+            Time at which the consumer key and secret were issues in
+            millisenconds since epoch.
+        scopes:
+          type: array
+          description: List of OAuth scopes.
+          items:
+            type: string
+        status:
+          type: string
+          description: Status of the API key. Valid values include `approved` or `revoked`.
+    ConsumerApp:
+      description: Consumer app details.
+      type: object
+      required:
+      - name
+      properties:
+        appFamily:
+          description: Output only. App family.
+          type: string
+        apiProducts:
+          description: List of API products to which the app is associated (when creating or updating an app). The name of the API product is the name returned when you <a href="/docs/api-products/1/routes/organizations/%7Borg_name%7D/apiproducts/get">list API products</a>. For example, if the Display Name of the API product in the UI is `Premium API Product`, then the name is `premium-api-product` (all lowercase with spaces replaced by hyphens). You can add API products later when you <a href="/docs/developer-apps/1/routes/organizations/%7Borg_name%7D/developers/%7Bdeveloper_email%7D/apps/%7Bapp_name%7D/put">update the developer app</a>. Existing API products are listed in the `credentials` array.
+          type: array
+          items:
+            type: string
+        appId:
+          description: Output only. ID of the app.
+          type: string
+        attributes:
+          description: >-
+            List of attributes used for customizing profile information or for app-specific processing. With Apigee , the custom attribute limit is 18. Note the folowing:
+            
+            
+            * `DisplayName` is an attribute that provides the app name in the UI. This can be different from the name (unique ID) of the app.
+            
+            * `Notes` attribute lets you add notes about the consumer app.
+            
+            * Any other arbitrary name/value pairs you create are included as custom attributes.
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        callbackUrl:
+          description: >-
+            Callback URL used by OAuth 2.0 authorization servers to communicate authorization codes back to apps. See the OAuth 2.0 documentation for more details.
+          type: string
+        createdAt:
+          format: int32
+          description: Output only. Time the app was created in milliseconds since epoch.
+          type: integer
+        createdBy:
+          description: Output only. Email address of the consumer that created the app.
+          type: string
+        credentials:
+          description: >-
+            Output only. Set of credentials for the app. Credentials are API key/secret pairs associated with API products.
+          type: array
+          items:
+            type: object
+            properties:
+              apiProducts:
+                description: Name and status of API products associated with the app.
+                type: array
+                items:
+                  type: object
+                  $ref: '#/components/schemas/APIProductRef'
+              attributes:
+                description: List of attributes.
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attribute'
+              consumerKey:
+                description: Consumer API key.
+                type: string
+              consumerSecret:
+                description: Consumer secret.
+                type: string
+              expiresAt:
+                description: Time the credentials expire in milliseconds since epoch.
+                format: int32
+                type: integer
+              issuedAt:
+                format: int32
+                description: Time the credentials were issued in milliseconds since epoch.
+                type: integer
+              scopes:
+                description: OAuth scopes.
+                type: array
+                items:
+                  type: string
+              status:
+                description: Status of the credentials.
+                type: string
+        developerId:
+          description: Output only. ID of the consumer.
+          type: string
+        keyExpiresIn: 
+          type: integer
+          format: int32
+          description: Lifetime of the consumer key that will be generated for the consumer app, in milliseconds. The default value, `-1`, indicates an infinite validity period. Once set, the expiration can't be updated.
+        lastModifiedAt:
+          format: int32
+          description: Output only. Last modified time as milliseconds since epoch.
+          type: integer
+        lastModifiedBy:
+          description: Output only. Email of consumer that last modified the app.
+          type: string
+        name:
+          description: >-
+            Name of the consumer app. Required when creating a consumer app; not required when updating a consumer app. 
+            
+            
+            The name is used to uniquely identify the app for this organization and consumer. Names must begin with an alphanumeric character and can contain letters, numbers, spaces, and the following characters: `. _ # - $ %`. While you can use spaces in the name, we recommend that you use camel case, underscores, or hyphens instead. Otherwise, you will have to URL-encode the app name when you need to include it in the URL of other Edge API calls. See the <a href="https://docs.apigee.com/api-platform/reference/naming-guidelines">naming restrictions</a>. 
+          type: string
+        scopes:
+          description: >-
+            Scopes to apply to the app. The specified scope names must already exist on the API product that you associate with the app.
+          type: array
+          items:
+            type: string
+        status:
+          description: Status of the credential.
+          type: string
+    APIProductRef:
+      description: API product information.
+      type: object
+      properties:
+        apiproduct:
+          description: Name of API product.
+          type: string
+        status:
+          description: Status of API product.
+          type: string
+    ConsumerAppsListByProductResponse:
+      type: object
+      properties:
+        app: 
+          type: array
+          items: 
+            type: object
+            properties: 
+              appId: 
+                type: string
+              attributes: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    value: 
+                      type: string
+              createdAt: 
+                type: string
+              credentials: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    apiProducts: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          apiproduct: 
+                            type: string
+                          status: 
+                            type: string
+                    consumerKey: 
+                      type: string
+                    consumerSecret: 
+                      type: string
+                    expiresAt: 
+                      type: string
+                    issuedAt: 
+                      type: string
+                    status: 
+                      type: string
+              developerId: 
+                type: string
+              lastModifiedAt: 
+                type: string
+              name: 
+                type: string
+              status: 
+                type: string
+              appFamily: 
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+security:
+  - bearerAuth: []
