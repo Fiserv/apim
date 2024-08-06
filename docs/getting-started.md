@@ -28,7 +28,7 @@ Perform the following steps to create an account on Fiserv Developer Studio:
 3.	Follow the instructions on the screen to set up your account
 4.	Sign in to your Fiserv Developer Studio account once it is activated
 
-## Creating a APIM Consumer Onboarding and Monetization Workspace
+## Creating a APIM Self service Workspace
 Workspaces are dedicated spaces for developers to obtain API key, API secret and product related details.
 Perform the following steps to create a workspace on Fiserv Developer Studio:
 
