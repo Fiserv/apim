@@ -4,6 +4,6 @@ Empowers BU implementation team to precisely define access controls, quota limit
 
 Begin the integration using the following services in the Product Management in API Explorer:
 * [Create Product](?path=reference/ConsumerManagement/CreatesProduct)
-* [list of Product](?path=reference/ConsumerManagement/listProduct)
+* [List of Product](?path=reference/ConsumerManagement/listProduct)
 * [Get Product](?path=reference/ConsumerManagement/GetProduct)
 * [Update Product](?path=reference/ConsumerManagement/UpdateProduct)
