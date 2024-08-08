@@ -1,6 +1,6 @@
 # Response Codes
 
-Every API request to APIM server returns a standard HTTP status code along with the EFX status code in the response message.
+Every API request to APIM server returns a standard HTTP status code in the response message.
 
 ## HTTP Status Codes
 
@@ -16,6 +16,7 @@ For every successful or unsuccessful API call, one of the following HTTP Status 
 | `401  Unauthorized` | Invalid authentication credentials  |
 | `403  Forbidden` | Forbidden to access the valid URL  |
 | `404  Not found` | Server unable to find the requested resource  |
+| `405  Method not allowed` | Method not allowed  |
 | `405  Method not allowed` | Method not allowed  |
 | `422  Un-processable Entity`  | Server is unable to process the request due to semantic errors |
 | `500  Internal Server Error` | Server encountered an unexpected error while processing the request  |
