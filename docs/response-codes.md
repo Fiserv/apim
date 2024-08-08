@@ -17,7 +17,7 @@ For every successful or unsuccessful API call, one of the following HTTP Status 
 | `403  Forbidden` | Forbidden to access the valid URL  |
 | `404  Not found` | Server unable to find the requested resource  |
 | `405  Method not allowed` | Method not allowed  |
-| `405  Method not allowed` | Method not allowed  |
+| `409  Conflict` | Resource already exists  |
 | `422  Un-processable Entity`  | Server is unable to process the request due to semantic errors |
 | `500  Internal Server Error` | Server encountered an unexpected error while processing the request  |
 | `503  Service Unavailable`        | Service is temporarily unavailable due to overload or maintenance activity    |
