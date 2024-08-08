@@ -287,14 +287,14 @@ To  make an API call using Postman application:
 
 ![Import postman collection-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Import-PostmanCollection-screenshot.png)
 
-4. Select collection and Select the API you want call from the list
+4. Select collection and Select the API you want to call from the list
 
 5. Under the Authentication tab, select Auth Type as Bearer Token and insert access token in the Token box
 
 ![Bearer Token-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/Bearer-Token-screenshot.png)
 
 
-6.	Insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST AND PUT API methode:
+6.	Insert the request-payload under the Body tab. Make sure that the raw radio button is activated and the text format is set to JSON for POST and PUT API method:
 
 ![API-RequestBody-screenshot](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/images/API-RequestBody-screenshot.png)
 
