@@ -10,7 +10,7 @@
 > [Download API Specifications for Rateplan-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-APISpecs/FTS-APIM-Rateplan-Management-V1.zip)
 
 <!-- theme: info -->  
-> [Download API Specifications for Reports-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-APISpecs/FTS-APIM-Reports-Management-V1.zip)
+> [Download API Specifications for Report-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-APISpecs/FTS-APIM-Reports-Management-V1.zip)
 
 <!-- theme: info -->  
 > [Download API Specifications for Subscription-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-APISpecs/FTS-APIM-Subscription-Management-V1.zip)
@@ -27,7 +27,7 @@
 > [Download Postman Collection for Rateplan-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Rateplan-Management-V1.zip)
 
 <!-- theme: info -->  
-> [Download Postman Collection for Reports-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Reports-Management-V1.zip)
+> [Download Postman Collection for Report-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Reports-Management-V1.zip)
 
 <!-- theme: info -->  
 > [Download Postman Collection for Subscription-Management-V1 ](https://raw.githubusercontent.com/Fiserv/apim/develop/assets/APIM-postman-collection/FTS-APIM-Subscription-Management-V1.zip)

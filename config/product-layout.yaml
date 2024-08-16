@@ -237,7 +237,7 @@ featuredFeatures:
         description: Expires an API product subscription immediately.
         type: "post"        
         path: "/consumers/{consumer-email}/subscriptions/{subscription-id}:expire" 
-  - title: Reports Management
+  - title: Report Management
     description:  Retrieve consumption data in near real-time related to monetized API calls by creating synchronous and Asynchronous reports.
     tags: ["APIM Consumer onboarding and Monetization center"]
     bullets: ["REPLACEME", "REPLACEME" ]  
