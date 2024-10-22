@@ -5,7 +5,7 @@
 Before you start integration, it is important to sign in on the Fiserv Developer Studio to test the APIM Consumer onboarding and Monetization APIs in the Mock server. You may choose to test APIs using the Third-party API Testing Tools of your choice. 
 
 <!-- theme: info -->
-> #### Note for Developers 
+> ### Note for Developers 
 >
 > To get access to a dedicated test environment, optional and ancillary services, including dedicated technical services, upgrade to a paid Developer Studio subscription plan <a href="https://appmarket.fiservapps.com/fintech" > here</a>.
 
