@@ -1,7 +1,9 @@
 # Make Your First API Call
 
 This section describes how to make API call  API and getting a response payload using  testing tools such as Postman,thunder Client and others.
+
 ## Prerequisites
+
 To make an API call, you need:
 - Fiserv Dev Studio user account  
 - Need to download postman collection
@@ -10,6 +12,7 @@ To make an API call, you need:
 
   
 ### Generating an Access Token
+
 To generate an access token, refer to the [Generating Access Token](?path=docs/getting-started/before-you-start.md#generating-access-token) section.
 
 ### Make an API call 

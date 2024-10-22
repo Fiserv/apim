@@ -3,6 +3,7 @@
 Retrieve consumption data in near real-time related to monetized API calls by creating synchronous and Asynchronous reports.
 
 Begin the integration using the following services in the Reports Management in API Explorer:
+
 * [Create Report](?path=reference/ConsumerManagement/CreatesReport)
 * [List of Reports](?path=reference/ConsumerManagement/listReport)
 * [Get Report](?path=reference/ConsumerManagement/GetReport)

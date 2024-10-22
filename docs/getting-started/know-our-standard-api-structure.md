@@ -11,6 +11,7 @@ All API requests must contain the following components:
 * [Access Token](#access-token)
 *	[Request Authorization](#request-authorization)
 *	[Request Body](#request-body)
+
 ### API Method
 
 API methods are  GET, POST or PUT
@@ -78,6 +79,7 @@ sample request payload for **Create a consumer** API request.
 
 
 ### Response Payload
+
 The response payload  returned details of the requested API in JSON format. 
 
 Sample response payload for **Create a consumer** API request.
