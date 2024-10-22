@@ -24,6 +24,7 @@ Perform the following steps to create an account on Fiserv Developer Studio:
 4.	Sign in to your Fiserv Developer Studio account once it is activated
 
 ## Creating a APIM Self service Workspace
+
 Workspaces are dedicated spaces for developers to obtain API key, API secret and product related details.
 Perform the following steps to create a workspace on Fiserv Developer Studio:
 
@@ -50,19 +51,21 @@ Every workspace has following three sections:
 
 * **Summary**: Displays workspace details and list of activities performed on the workspace
 * **Credentials**: Lists all active API keys. From this section, you can view or download the following details of an API key:
-    * Product name: _Name of the product, for example, APIM Consumer Onboarding and Monetization Workspace       
-    * API key: _Alphanumeric value of the API key. API key is used as username while generating the access token_
-    * API secret: _Alphanumeric value of the API secret. API secret is used as password while generating the access token_
-    * Host URL: _Host URL path to send API requests_
+  * Product name: _Name of the product, for example, APIM Consumer Onboarding and Monetization Workspace       
+  * API key: _Alphanumeric value of the API key. API key is used as username while generating the access token_
+  * API secret: _Alphanumeric value of the API secret. API secret is used as password while generating the access token_
+  * Host URL: _Host URL path to send API requests_
 * **Settings**: Used to modify or delete the workspace
 
 
 ## Generating Access Token
+
 ### URL
 
 ``POST https://connect-uat.fiservapis.com/fts-apim/jwt/v1/token/generate``
 
 ### Authorization
+
 From the authirization select Basic Auth and provide:
 
 ``Username= **API key** and Password= **API secret**``
