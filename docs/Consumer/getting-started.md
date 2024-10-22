@@ -25,6 +25,7 @@ This section describes the process to create an account on Fiserv Developer Stud
 ### Creating an Account
 
 Perform the following steps to create an account on Fiserv Developer Studio:
+
 1.	From the top-right corner of the screen, click **Create account**
 2.	Populate the required fields and click **Next**
 3.	Follow the instructions on the screen to set up your account
@@ -95,7 +96,8 @@ From the Body tab, select the **x-www-form-urlencoded** radio button and enter t
 |``expires_in``       | <p>Time in milliseconds until the generated token is valid.</p> <p>**Note:** Once generated, the access token is valid for approximately 15 minutes. You can reuse the access token until it expires. </p> | number        |
 |    ``token_type``   |     Type of access token                                 |     string    |
 
-**Sample Response**
+## Sample Response
+
 ```
 {
     "access_token": "e9XBKU1l81s3NvsAKcwJVImrFAbr",
@@ -238,7 +240,7 @@ Sample response payload for **Create a consumer** API request.
 }
 ```
 
-[Next - Make Your First API Call](#tab-make_your_first_api_call)
+[Next - Make Your First API Call](#Make-Your-First-API-Call)
 
 <!-- type: tab -->
 
@@ -253,12 +255,13 @@ You can test our APIs in using third-party API testing tools, such as Postman, t
 <!-- theme: info -->
 > ### Tip
 >
-> We recommend you to refer to the [Know Our Standard API Structure](#tab-know_our_standard_api_structure) section to understand the API structure prior to testing the APIs in any third-party tool.
+> We recommend you to refer to the [Know Our Standard API Structure](#Know-Our-Standard-API-Structure) section to understand the API structure prior to testing the APIs in any third-party tool.
 
 
 ## Prerequisites
 
 To make an API call, you need:
+
 * Fiserv Dev Studio user account  
 * need to download postman collection
 * import postman collection in to postman app
@@ -269,7 +272,7 @@ To make an API call, you need:
 
 An access token is used to authenticate your API build and allows you to use the Fiserv APIs securely. **API key** and **API secret** values obtained from Workspace are required to generate an access token. 
   
-To generate an access token, refer to the "Generating Access Token" section under the [Before You Start](#tab-before_you_start) tab.
+To generate an access token, refer to the "Generating Access Token" section under the [Before You Start](#Before-You-Start) tab.
 
 
 <!-- theme: info -->
@@ -280,6 +283,7 @@ To generate an access token, refer to the "Generating Access Token" section unde
 ### Make an API call 
 
 To  make an API call using Postman application:
+
 1. Download postman collection from Resources
 
 ![Download-PostmanCollection](https://github.com/Fiserv/apim/blob/develop/assets/images/Download-PostmanCollection-screenshot.png)
